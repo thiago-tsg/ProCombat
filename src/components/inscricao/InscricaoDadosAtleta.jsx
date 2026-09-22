@@ -1,0 +1,129 @@
+const InscricaoDadosAtleta = ({
+    usuario,
+    categoria,
+    idade,
+    peso,
+    onPesoChange,
+    formatarSexo,
+    formatarGraduacao
+}) => {
+
+    return (
+        <div className="inscricao-grid">
+
+            <div className="inscricao-field">
+
+                <label>
+                    Atleta
+                </label>
+
+                <div className="inscricao-readonly">
+                    {usuario.nome}
+                </div>
+
+            </div>
+
+
+            <div className="inscricao-field">
+
+                <label>
+                    Categoria
+                </label>
+
+                <div className="inscricao-readonly">
+
+                    {categoria
+                        ? categoria.nome
+                        : 'Categoria não encontrada'
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div className="inscricao-field">
+
+                <label>
+                    Sexo
+                </label>
+
+                <div className="inscricao-readonly">
+
+                    {formatarSexo(
+                        usuario.sexo
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div className="inscricao-field">
+
+                <label>
+                    Graduação
+                </label>
+
+                <div className="inscricao-readonly">
+
+                    {formatarGraduacao(
+                        usuario.graduacao
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div className="inscricao-field">
+
+                <label htmlFor="inscricao-peso">
+                    Peso de competição
+                </label>
+
+                <div className="inscricao-input-wrapper">
+
+                    <input
+                        id="inscricao-peso"
+                        type="text"
+                        inputMode="decimal"
+                        value={peso}
+                        onChange={onPesoChange}
+                        placeholder="Ex: 70.500"
+                        required
+                    />
+
+                    <span>
+                        kg
+                    </span>
+
+                </div>
+
+                <small>
+                    Informe o peso com o qual irá competir.
+                </small>
+
+            </div>
+
+
+            <div className="inscricao-field">
+
+                <label>
+                    Idade no evento
+                </label>
+
+                <div className="inscricao-readonly">
+
+                    {idade} anos
+
+                </div>
+
+            </div>
+
+        </div>
+    );
+};
+
+
+export default InscricaoDadosAtleta;

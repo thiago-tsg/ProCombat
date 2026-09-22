@@ -1,75 +1,332 @@
 const FiltroPeso = ({
     tipoPeso,
     setTipoPeso,
+
     pesagem,
     setPesagem,
+
     sexo,
     setSexo,
+
     categoria,
     setCategoria,
+
     graduacao,
     setGraduacao,
-    evento
+
+    tabelas
 }) => {
+
+    // ==================================================
+    // TIPOS DE PESO
+    // ==================================================
+
+    const tiposPeso = [
+        {
+            valor: 'com-kimono',
+            label: 'Com kimono'
+        },
+        {
+            valor: 'peso-atleta',
+            label: 'Peso atleta'
+        }
+    ];
+
+
+    // ==================================================
+    // PESAGENS
+    // ==================================================
+
+    const pesagensDisponiveis = [
+        {
+            valor: 'peso',
+            label: 'Peso'
+        },
+        {
+            valor: 'absoluto',
+            label: 'Absoluto'
+        }
+    ];
+
+
+    // ==================================================
+    // TABELAS APÓS O TIPO DE PESO
+    // ==================================================
+
+    const tabelasTipoPeso = tabelas.filter(
+        (item) =>
+            item.tipoPeso === tipoPeso
+    );
+
+
+    // ==================================================
+    // TABELAS APÓS A PESAGEM
+    // ==================================================
+
+    const tabelasPesagem =
+        tabelasTipoPeso.filter(
+            (item) =>
+                item.pesagem === pesagem
+        );
+
+
+    // ==================================================
+    // SEXOS DISPONÍVEIS
+    // ==================================================
+
+    const sexosDisponiveis = [];
+
+    tabelasPesagem.forEach((item) => {
+
+        if (
+            item.sexo === 'ambos'
+        ) {
+
+            if (
+                !sexosDisponiveis.includes(
+                    'masculino'
+                )
+            ) {
+                sexosDisponiveis.push(
+                    'masculino'
+                );
+            }
+
+
+            if (
+                !sexosDisponiveis.includes(
+                    'feminino'
+                )
+            ) {
+                sexosDisponiveis.push(
+                    'feminino'
+                );
+            }
+
+            return;
+        }
+
+
+        if (
+            !sexosDisponiveis.includes(
+                item.sexo
+            )
+        ) {
+            sexosDisponiveis.push(
+                item.sexo
+            );
+        }
+
+    });
+
+
+    // ==================================================
+    // TABELAS APÓS O SEXO
+    // ==================================================
+
+    const tabelasSexo =
+        tabelasPesagem.filter(
+            (item) =>
+                item.sexo === sexo ||
+                item.sexo === 'ambos'
+        );
+
+
+    // ==================================================
+    // CATEGORIAS DISPONÍVEIS
+    // ==================================================
+
+    const categoriasDisponiveis = [];
+
+    tabelasSexo.forEach((item) => {
+
+        if (
+            !categoriasDisponiveis.some(
+                (categoriaItem) =>
+                    categoriaItem.valor ===
+                    item.categoria
+            )
+        ) {
+
+            categoriasDisponiveis.push({
+                valor: item.categoria,
+                label: item.categoriaLabel
+            });
+
+        }
+
+    });
+
+
+    // ==================================================
+    // TABELAS APÓS A CATEGORIA
+    // ==================================================
+
+    const tabelasCategoria =
+        tabelasSexo.filter(
+            (item) =>
+                item.categoria === categoria
+        );
+
+
+    // ==================================================
+    // GRADUAÇÕES DISPONÍVEIS
+    // ==================================================
+
+    const graduacoesDisponiveis = [];
+
+    tabelasCategoria.forEach((item) => {
+
+        if (!item.graduacoes) {
+            return;
+        }
+
+
+        item.graduacoes.forEach(
+            (graduacaoItem) => {
+
+                if (
+                    !graduacoesDisponiveis.includes(
+                        graduacaoItem
+                    )
+                ) {
+
+                    graduacoesDisponiveis.push(
+                        graduacaoItem
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    // ==================================================
+    // NOMES DAS GRADUAÇÕES
+    // ==================================================
+
+    const nomesGraduacoes = {
+        branca: 'Branca',
+        cinza: 'Cinza',
+        amarela: 'Amarela',
+        laranja: 'Laranja',
+        verde: 'Verde',
+        azul: 'Azul',
+        roxa: 'Roxa',
+        marrom: 'Marrom',
+        preta: 'Preta'
+    };
+
+
+    // ==================================================
+    // RENDER
+    // ==================================================
 
     return (
         <div className="filtro-peso">
 
-            <div className="filtro-peso-field">
+
+            {/* =========================================
+                TIPO DE PESO
+            ========================================= */}
+
+            <div className="filtro-peso-group">
 
                 <label htmlFor="tipo-peso">
                     Tipo de peso
                 </label>
 
+
                 <select
                     id="tipo-peso"
                     value={tipoPeso}
-                    onChange={(event) => setTipoPeso(event.target.value)}
+                    onChange={(event) =>
+                        setTipoPeso(
+                            event.target.value
+                        )
+                    }
                 >
+
                     <option value="">
                         Escolha um tipo de peso
                     </option>
 
-                    <option value="atleta">
-                        PESO ATLETA
-                    </option>
 
-                    <option value="kimono">
-                        PESO KIMONO
-                    </option>
+                    {tiposPeso.map(
+                        (tipo) => (
+
+                            <option
+                                key={tipo.valor}
+                                value={tipo.valor}
+                            >
+                                {tipo.label}
+                            </option>
+
+                        )
+                    )}
 
                 </select>
 
             </div>
 
 
+            {/* =========================================
+                PESAGEM
+            ========================================= */}
+
             {tipoPeso && (
 
-                <div className="filtro-peso-field">
+                <div className="filtro-peso-group">
 
                     <label htmlFor="pesagem">
                         Pesagem
                     </label>
 
+
                     <select
                         id="pesagem"
                         value={pesagem}
-                        onChange={(event) => setPesagem(event.target.value)}
+                        onChange={(event) =>
+                            setPesagem(
+                                event.target.value
+                            )
+                        }
                     >
+
                         <option value="">
                             Escolha a pesagem
                         </option>
 
-                        <option value="peso">
-                            PESO
-                        </option>
 
-                        <option
-                            value="absoluto"
-                            disabled={!evento.absoluto}
-                        >
-                            ABSOLUTO
-                        </option>
+                        {pesagensDisponiveis
+                            .filter(
+                                (pesagemItem) =>
+                                    tabelasTipoPeso.some(
+                                        (item) =>
+                                            item.pesagem ===
+                                            pesagemItem.valor
+                                    )
+                            )
+                            .map(
+                                (pesagemItem) => (
+
+                                    <option
+                                        key={
+                                            pesagemItem.valor
+                                        }
+                                        value={
+                                            pesagemItem.valor
+                                        }
+                                    >
+                                        {
+                                            pesagemItem.label
+                                        }
+                                    </option>
+
+                                )
+                            )}
 
                     </select>
 
@@ -78,43 +335,51 @@ const FiltroPeso = ({
             )}
 
 
-            {pesagem === 'absoluto' && evento.absoluto && (
+            {/* =========================================
+                SEXO
+            ========================================= */}
 
-                <div className="filtro-peso-info">
+            {pesagem && (
 
-                    <p>
-                        {evento.absolutoTexto}
-                    </p>
-
-                </div>
-
-            )}
-
-
-            {pesagem === 'peso' && (
-
-                <div className="filtro-peso-field">
+                <div className="filtro-peso-group">
 
                     <label htmlFor="sexo">
                         Sexo
                     </label>
 
+
                     <select
                         id="sexo"
                         value={sexo}
-                        onChange={(event) => setSexo(event.target.value)}
+                        onChange={(event) =>
+                            setSexo(
+                                event.target.value
+                            )
+                        }
                     >
+
                         <option value="">
                             Escolha o sexo
                         </option>
 
-                        <option value="masculino">
-                            MASCULINO
-                        </option>
 
-                        <option value="feminino">
-                            FEMININO
-                        </option>
+                        {sexosDisponiveis.map(
+                            (sexoItem) => (
+
+                                <option
+                                    key={sexoItem}
+                                    value={sexoItem}
+                                >
+                                    {
+                                        sexoItem ===
+                                        'masculino'
+                                            ? 'Masculino'
+                                            : 'Feminino'
+                                    }
+                                </option>
+
+                            )
+                        )}
 
                     </select>
 
@@ -123,33 +388,52 @@ const FiltroPeso = ({
             )}
 
 
-            {pesagem === 'peso' && sexo && (
+            {/* =========================================
+                CATEGORIA
+            ========================================= */}
 
-                <div className="filtro-peso-field">
+            {sexo && (
+
+                <div className="filtro-peso-group">
 
                     <label htmlFor="categoria">
                         Categoria
                     </label>
 
+
                     <select
                         id="categoria"
                         value={categoria}
-                        onChange={(event) => setCategoria(event.target.value)}
+                        onChange={(event) =>
+                            setCategoria(
+                                event.target.value
+                            )
+                        }
                     >
+
                         <option value="">
                             Escolha a categoria
                         </option>
 
-                        {evento.categorias?.map((item) => (
 
-                            <option
-                                key={item}
-                                value={item}
-                            >
-                                {item}
-                            </option>
+                        {categoriasDisponiveis.map(
+                            (categoriaItem) => (
 
-                        ))}
+                                <option
+                                    key={
+                                        categoriaItem.valor
+                                    }
+                                    value={
+                                        categoriaItem.valor
+                                    }
+                                >
+                                    {
+                                        categoriaItem.label
+                                    }
+                                </option>
+
+                            )
+                        )}
 
                     </select>
 
@@ -158,33 +442,55 @@ const FiltroPeso = ({
             )}
 
 
-            {pesagem === 'peso' && categoria && (
+            {/* =========================================
+                GRADUAÇÃO
+            ========================================= */}
 
-                <div className="filtro-peso-field">
+            {categoria && (
+
+                <div className="filtro-peso-group">
 
                     <label htmlFor="graduacao">
                         Graduação
                     </label>
 
+
                     <select
                         id="graduacao"
                         value={graduacao}
-                        onChange={(event) => setGraduacao(event.target.value)}
+                        onChange={(event) =>
+                            setGraduacao(
+                                event.target.value
+                            )
+                        }
                     >
+
                         <option value="">
                             Escolha a graduação
                         </option>
 
-                        {evento.graduacoes?.map((item) => (
 
-                            <option
-                                key={item}
-                                value={item}
-                            >
-                                {item}
-                            </option>
+                        {graduacoesDisponiveis.map(
+                            (graduacaoItem) => (
 
-                        ))}
+                                <option
+                                    key={
+                                        graduacaoItem
+                                    }
+                                    value={
+                                        graduacaoItem
+                                    }
+                                >
+                                    {
+                                        nomesGraduacoes[
+                                            graduacaoItem
+                                        ] ||
+                                        graduacaoItem
+                                    }
+                                </option>
+
+                            )
+                        )}
 
                     </select>
 
@@ -195,5 +501,6 @@ const FiltroPeso = ({
         </div>
     );
 };
+
 
 export default FiltroPeso;

@@ -1,53 +1,244 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import '../../styles/evento/Eventos.scss';
-
-import eventos from './eventos';
 
 import EventoCard from './EventoCard';
 import EventoAbas from './EventoAbas';
 
+import InscricaoEvento from '../inscricao/InscricaoEvento';
+
+
+const CHAVE_LOCAL_STORAGE = 'procombat_eventos';
+
+
 const Eventos = () => {
 
-    const [eventoSelecionado, setEventoSelecionado] = useState(null);
+    const { id } = useParams();
 
-    const abrirEvento = (evento) => {
-        setEventoSelecionado(evento);
+
+    const [eventos, setEventos] = useState([]);
+
+    const [carregando, setCarregando] = useState(true);
+
+    const [inscricaoAberta, setInscricaoAberta] =
+        useState(false);
+
+
+    // ==================================================
+    // CARREGAR EVENTOS
+    // ==================================================
+
+    useEffect(() => {
+
+        try {
+
+            const eventosSalvos = localStorage.getItem(
+                CHAVE_LOCAL_STORAGE
+            );
+
+
+            if (!eventosSalvos) {
+
+                setEventos([]);
+
+                setCarregando(false);
+
+                return;
+            }
+
+
+            const eventosConvertidos = JSON.parse(
+                eventosSalvos
+            );
+
+
+            if (!Array.isArray(eventosConvertidos)) {
+
+                setEventos([]);
+
+                setCarregando(false);
+
+                return;
+            }
+
+
+            const eventosPublicados =
+                eventosConvertidos.filter(
+                    (evento) =>
+                        evento.status === 'publicado'
+                );
+
+
+            setEventos(eventosPublicados);
+
+        } catch (erro) {
+
+            console.error(
+                'Erro ao carregar eventos públicos:',
+                erro
+            );
+
+            setEventos([]);
+
+        } finally {
+
+            setCarregando(false);
+
+        }
+
+    }, []);
+
+
+    // ==================================================
+    // ROLAR PARA O TOPO AO ABRIR EVENTO
+    // ==================================================
+
+    useEffect(() => {
 
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
+
+    }, [id]);
+
+
+    // ==================================================
+    // FECHAR INSCRIÇÃO AO TROCAR DE EVENTO
+    // ==================================================
+
+    useEffect(() => {
+
+        setInscricaoAberta(false);
+
+    }, [id]);
+
+
+    // ==================================================
+    // ENCONTRAR EVENTO PELA URL
+    // ==================================================
+
+    const eventoSelecionado = id
+        ? eventos.find(
+            (evento) =>
+                String(evento.id) === String(id)
+        )
+        : null;
+
+
+    // ==================================================
+    // ABRIR INSCRIÇÃO
+    // ==================================================
+
+    const abrirInscricao = () => {
+
+        setInscricaoAberta(true);
+
     };
 
-    const voltarEventos = () => {
-        setEventoSelecionado(null);
 
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    // ==================================================
+    // FECHAR INSCRIÇÃO
+    // ==================================================
+
+    const fecharInscricao = () => {
+
+        setInscricaoAberta(false);
+
     };
 
-    if (eventoSelecionado) {
+
+    // ==================================================
+    // CARREGANDO
+    // ==================================================
+
+    if (carregando) {
+
         return (
             <section className="eventos">
 
                 <div className="eventos-container">
 
-                    <button
-                        type="button"
+                    <div className="eventos-vazio">
+
+                        <span>
+                            Carregando eventos...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+        );
+    }
+
+
+    // ==================================================
+    // EVENTO NÃO ENCONTRADO
+    // ==================================================
+
+    if (id && !eventoSelecionado) {
+
+        return (
+            <section className="eventos">
+
+                <div className="eventos-container">
+
+                    <div className="eventos-vazio">
+
+                        <span>
+                            Evento não encontrado
+                        </span>
+
+
+                        <p>
+                            Este evento não existe ou ainda não foi publicado.
+                        </p>
+
+
+                        <Link
+                            to="/eventos"
+                            className="eventos-voltar"
+                        >
+                            ← Voltar para eventos
+                        </Link>
+
+                    </div>
+
+                </div>
+            </section>
+        );
+    }
+
+
+    // ==================================================
+    // EVENTO ABERTO
+    // ==================================================
+
+    if (eventoSelecionado) {
+
+        return (
+            <section className="eventos">
+
+                <div className="eventos-container">
+
+                    <Link
+                        to="/eventos"
                         className="eventos-voltar"
-                        onClick={voltarEventos}
                     >
                         ← Voltar para eventos
-                    </button>
+                    </Link>
+
 
                     <div className="evento-aberto">
 
                         <EventoCard
                             evento={eventoSelecionado}
+                            eventoAberto={true}
+                            onInscrever={abrirInscricao}
                         />
+
 
                         <EventoAbas
                             evento={eventoSelecionado}
@@ -57,9 +248,28 @@ const Eventos = () => {
 
                 </div>
 
+
+                {/* ==========================================
+                    POPUP DE INSCRIÇÃO
+                ========================================== */}
+
+                {inscricaoAberta && (
+
+                    <InscricaoEvento
+                        evento={eventoSelecionado}
+                        onFechar={fecharInscricao}
+                    />
+
+                )}
+
             </section>
         );
     }
+
+
+    // ==================================================
+    // LISTA DE EVENTOS
+    // ==================================================
 
     return (
         <section className="eventos">
@@ -72,9 +282,11 @@ const Eventos = () => {
                         Pro Combat
                     </span>
 
+
                     <h1>
                         Eventos
                     </h1>
+
 
                     <p>
                         Confira os próximos eventos,
@@ -84,15 +296,36 @@ const Eventos = () => {
 
                 </header>
 
+
                 <div className="eventos-list">
 
-                    {eventos.map((evento) => (
-                        <EventoCard
-                            key={evento.id}
-                            evento={evento}
-                            onClick={() => abrirEvento(evento)}
-                        />
-                    ))}
+                    {eventos.length === 0 ? (
+
+                        <div className="eventos-vazio">
+
+                            <span>
+                                Nenhum evento disponível
+                            </span>
+
+
+                            <p>
+                                Novos eventos serão publicados em breve.
+                            </p>
+
+                        </div>
+
+                    ) : (
+
+                        eventos.map((evento) => (
+
+                            <EventoCard
+                                key={evento.id}
+                                evento={evento}
+                            />
+
+                        ))
+
+                    )}
 
                 </div>
 
@@ -101,5 +334,6 @@ const Eventos = () => {
         </section>
     );
 };
+
 
 export default Eventos;

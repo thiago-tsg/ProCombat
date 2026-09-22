@@ -7,6 +7,8 @@ import Main from './main/Main';
 import Eventos from './evento/Evento';
 import Sobre from './Sobre';
 import ButtonWhats from './ButtonWhats';
+import Admin from './admin/Admin';
+
 
 const Home = () => {
   return (
@@ -17,6 +19,7 @@ const Home = () => {
     </>
   );
 };
+
 
 const App = () => {
   return (
@@ -29,10 +32,18 @@ const App = () => {
           element={<Home />}
         />
 
+
         <Route
           path="/eventos"
           element={<Eventos />}
         />
+
+
+        <Route
+          path="/eventos/:id"
+          element={<Eventos />}
+        />
+
 
         <Route
           path="/sobre"
@@ -41,8 +52,15 @@ const App = () => {
 
       </Route>
 
+
+      <Route
+        path="/admin"
+        element={<Admin />}
+      />
+
     </Routes>
   );
 };
+
 
 export default App;

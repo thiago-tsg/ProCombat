@@ -1,0 +1,819 @@
+.inscricao-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+
+    background: rgba(0, 0, 0, 0.82);
+
+    backdrop-filter: blur(8px);
+
+    overflow-y: auto;
+}
+
+
+.inscricao-modal {
+    width: 100%;
+    max-width: 760px;
+
+    margin: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #090909
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.65);
+
+    animation:
+        inscricaoEntrada 0.25s ease;
+}
+
+
+@keyframes inscricaoEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+.inscricao-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    padding: 2rem;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+
+    span {
+        display: block;
+
+        margin-bottom: 0.5rem;
+
+        color: #e50914;
+
+        font-size: 0.65rem;
+        font-weight: 800;
+
+        letter-spacing: 0.16em;
+
+        text-transform: uppercase;
+    }
+
+
+    h2 {
+        margin: 0;
+
+        color: #ffffff;
+
+        font-size: clamp(1.4rem, 3vw, 2rem);
+
+        line-height: 1;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+    }
+
+}
+
+
+.inscricao-fechar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+
+    &:hover {
+        border-color: #e50914;
+
+        background: #e50914;
+
+        color: #ffffff;
+    }
+
+}
+
+
+.inscricao-form {
+    padding: 2rem;
+}
+
+
+.inscricao-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1.25rem;
+}
+
+
+.inscricao-field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+
+    label {
+        color:
+            rgba(255, 255, 255, 0.5);
+
+        font-size: 0.65rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.12em;
+
+        text-transform: uppercase;
+    }
+
+
+    small {
+        color:
+            rgba(255, 255, 255, 0.35);
+
+        font-size: 0.7rem;
+
+        line-height: 1.5;
+    }
+
+}
+
+
+.inscricao-readonly {
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 1rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background: #0c0c0c;
+
+    color: #ffffff;
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+}
+
+
+.inscricao-input-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+
+    input {
+        width: 100%;
+
+        min-height: 48px;
+
+        padding:
+            0 3rem 0 1rem;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.15);
+
+        border-radius: 0;
+
+        outline: none;
+
+        background: #0c0c0c;
+
+        color: #ffffff;
+
+        font-family: inherit;
+
+        font-size: 0.85rem;
+
+        transition:
+            border-color 0.2s ease,
+            background 0.2s ease;
+
+
+        &:focus {
+            border-color: #e50914;
+
+            background: #111111;
+        }
+
+    }
+
+
+    span {
+        position: absolute;
+
+        right: 1rem;
+
+        color:
+            rgba(255, 255, 255, 0.4);
+
+        font-size: 0.7rem;
+
+        font-weight: 700;
+    }
+
+}
+
+
+.inscricao-modalidade {
+    margin-top: 2rem;
+
+    padding-top: 2rem;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.inscricao-section-title {
+
+    span {
+        display: block;
+
+        margin-bottom: 0.4rem;
+
+        color: #ffffff;
+
+        font-size: 0.85rem;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+    }
+
+
+    p {
+        margin: 0;
+
+        color:
+            rgba(255, 255, 255, 0.4);
+
+        font-size: 0.75rem;
+    }
+
+}
+
+
+.inscricao-modalidade-opcoes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+
+    margin-top: 1rem;
+}
+
+
+.inscricao-modalidade-opcao {
+    position: relative;
+
+    cursor: pointer;
+
+
+    input {
+        position: absolute;
+
+        opacity: 0;
+
+        pointer-events: none;
+    }
+
+
+    span {
+        min-width: 110px;
+
+        min-height: 46px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 0 1.25rem;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.12);
+
+        background: #0c0c0c;
+
+        color:
+            rgba(255, 255, 255, 0.55);
+
+        font-size: 0.72rem;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+
+        transition:
+            border-color 0.2s ease,
+            background 0.2s ease,
+            color 0.2s ease;
+    }
+
+
+    &:hover span {
+        border-color:
+            rgba(229, 9, 20, 0.6);
+
+        color: #ffffff;
+    }
+
+
+    &.ativo span {
+        border-color: #e50914;
+
+        background:
+            rgba(229, 9, 20, 0.12);
+
+        color: #ffffff;
+    }
+
+}
+
+
+.inscricao-resumo {
+    margin-top: 2rem;
+
+    padding: 1.25rem;
+
+    border-left:
+        2px solid
+        #e50914;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(229, 9, 20, 0.08),
+            rgba(255, 255, 255, 0.02)
+        );
+
+
+    > span {
+        display: block;
+
+        margin-bottom: 0.6rem;
+
+        color: #e50914;
+
+        font-size: 0.62rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.14em;
+
+        text-transform: uppercase;
+    }
+
+
+    strong {
+        display: block;
+
+        margin-bottom: 0.3rem;
+
+        color: #ffffff;
+
+        font-size: 0.85rem;
+    }
+
+
+    p {
+        margin: 0;
+
+        color:
+            rgba(255, 255, 255, 0.5);
+
+        font-size: 0.72rem;
+
+        line-height: 1.6;
+    }
+
+}
+
+
+/*
+ * =========================================================
+ * CONFIRMAÇÃO DA INSCRIÇÃO
+ * =========================================================
+ */
+
+.inscricao-confirmacao {
+    padding: 2.5rem 2rem 2rem;
+
+    text-align: center;
+}
+
+
+/*
+ * Ícone de confirmação
+ */
+
+.inscricao-confirmacao-icone {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 1.25rem;
+
+    border:
+        1px solid
+        rgba(229, 9, 20, 0.45);
+
+    border-radius: 50%;
+
+    background:
+        rgba(229, 9, 20, 0.08);
+
+    color: #e50914;
+
+    font-size: 1.7rem;
+
+    font-weight: 800;
+}
+
+
+/*
+ * Título
+ */
+
+.inscricao-confirmacao h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(1.4rem, 3vw, 2rem);
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+}
+
+
+/*
+ * Texto abaixo do título
+ */
+
+.inscricao-confirmacao > p {
+    max-width: 500px;
+
+    margin: 0.85rem auto 2rem;
+
+    color:
+        rgba(255, 255, 255, 0.5);
+
+    font-size: 0.78rem;
+
+    line-height: 1.6;
+}
+
+
+/*
+ * Dados da inscrição
+ */
+
+.inscricao-confirmacao-dados {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 1px;
+
+    margin-top: 1.5rem;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/*
+ * Cada informação
+ */
+
+.inscricao-confirmacao-item {
+    min-height: 78px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 1rem 1.25rem;
+
+    background: #0d0d0d;
+
+    text-align: left;
+
+
+    span {
+        margin-bottom: 0.4rem;
+
+        color:
+            rgba(255, 255, 255, 0.38);
+
+        font-size: 0.58rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.12em;
+
+        text-transform: uppercase;
+    }
+
+
+    strong {
+        color: #ffffff;
+
+        font-size: 0.8rem;
+
+        font-weight: 700;
+
+        line-height: 1.4;
+    }
+
+}
+
+
+/*
+ * Aviso sobre o pagamento
+ */
+
+.inscricao-confirmacao-aviso {
+    margin-top: 1.5rem;
+
+    padding: 1rem 1.25rem;
+
+    border-left:
+        2px solid
+        #e50914;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(229, 9, 20, 0.08),
+            rgba(255, 255, 255, 0.015)
+        );
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size: 0.72rem;
+
+    line-height: 1.6;
+
+    text-align: left;
+}
+
+
+/*
+ * =========================================================
+ * AÇÕES
+ * =========================================================
+ */
+
+.inscricao-acoes {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 0.75rem;
+
+    margin-top: 2rem;
+
+    padding-top: 1.5rem;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+
+    button {
+        min-height: 48px;
+
+        padding: 0 1.5rem;
+
+        border: 1px solid transparent;
+
+        font-family: inherit;
+
+        font-size: 0.7rem;
+
+        font-weight: 800;
+
+        letter-spacing: 0.04em;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+
+        transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease;
+
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+}
+
+
+.inscricao-cancelar {
+    border-color:
+        rgba(255, 255, 255, 0.12) !important;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+
+    &:hover {
+        border-color:
+            rgba(255, 255, 255, 0.3) !important;
+
+        color: #ffffff;
+    }
+
+}
+
+
+.inscricao-confirmar,
+.inscricao-pagamento {
+    background: #e50914;
+
+    color: #ffffff;
+
+
+    &:hover {
+        background: #c90812;
+
+        transform: translateY(-1px);
+    }
+
+}
+
+
+/*
+ * Botão da etapa de pagamento
+ */
+
+.inscricao-pagamento {
+    width: 100%;
+
+    min-height: 54px !important;
+
+    font-size: 0.75rem !important;
+
+    letter-spacing: 0.08em !important;
+}
+
+
+/*
+ * =========================================================
+ * RESPONSIVO
+ * =========================================================
+ */
+
+@media (max-width: 600px) {
+
+    .inscricao-overlay {
+        align-items: flex-start;
+
+        padding: 1rem;
+    }
+
+
+    .inscricao-header {
+        padding: 1.5rem;
+    }
+
+
+    .inscricao-form {
+        padding: 1.5rem;
+    }
+
+
+    .inscricao-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .inscricao-modalidade-opcao {
+        flex: 1;
+
+        span {
+            width: 100%;
+        }
+    }
+
+
+    .inscricao-acoes {
+        flex-direction: column-reverse;
+
+
+        button {
+            width: 100%;
+        }
+    }
+
+
+    /*
+     * Segunda etapa no celular
+     */
+
+    .inscricao-confirmacao {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+
+    .inscricao-confirmacao-dados {
+        grid-template-columns: 1fr;
+    }
+
+
+    .inscricao-confirmacao-item {
+        min-height: 68px;
+    }
+
+
+    .inscricao-confirmacao-aviso {
+        font-size: 0.7rem;
+    }
+
+}

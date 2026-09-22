@@ -3,9 +3,11 @@ import { useState } from 'react';
 import FiltroPeso from './FiltroPeso';
 import ResultadoPeso from './ResultadoPeso';
 
+import { tabelasPeso } from '../../data/tabelasPeso';
+
 import '../../styles/evento/TabelaPeso.scss';
 
-const TabelaPeso = ({ evento }) => {
+const TabelaPeso = () => {
 
     const [tipoPeso, setTipoPeso] = useState('');
     const [pesagem, setPesagem] = useState('');
@@ -13,15 +15,35 @@ const TabelaPeso = ({ evento }) => {
     const [categoria, setCategoria] = useState('');
     const [graduacao, setGraduacao] = useState('');
 
-    const resultado = evento.tabelaPeso?.find((item) => (
-        item.tipoPeso === tipoPeso &&
-        item.pesagem === pesagem &&
-        item.sexo === sexo &&
-        item.categoria === categoria &&
-        item.graduacao === graduacao
-    ));
+    const resultado = tabelasPeso.find((item) => {
+
+        const tipoPesoCorreto =
+            item.tipoPeso === tipoPeso;
+
+        const pesagemCorreta =
+            item.pesagem === pesagem;
+
+        const sexoCorreto =
+            item.sexo === sexo ||
+            item.sexo === 'ambos';
+
+        const categoriaCorreta =
+            item.categoria === categoria;
+
+        const graduacaoCorreta =
+            item.graduacoes?.includes(graduacao);
+
+        return (
+            tipoPesoCorreto &&
+            pesagemCorreta &&
+            sexoCorreto &&
+            categoriaCorreta &&
+            graduacaoCorreta
+        );
+    });
 
     const handleTipoPeso = (valor) => {
+
         setTipoPeso(valor);
 
         setPesagem('');
@@ -31,6 +53,7 @@ const TabelaPeso = ({ evento }) => {
     };
 
     const handlePesagem = (valor) => {
+
         setPesagem(valor);
 
         setSexo('');
@@ -39,6 +62,7 @@ const TabelaPeso = ({ evento }) => {
     };
 
     const handleSexo = (valor) => {
+
         setSexo(valor);
 
         setCategoria('');
@@ -46,6 +70,7 @@ const TabelaPeso = ({ evento }) => {
     };
 
     const handleCategoria = (valor) => {
+
         setCategoria(valor);
 
         setGraduacao('');
@@ -65,8 +90,8 @@ const TabelaPeso = ({ evento }) => {
                 </h2>
 
                 <p>
-                    Consulte as categorias de peso disponíveis
-                    para este evento.
+                    Consulte a categoria de peso
+                    correspondente ao atleta.
                 </p>
 
             </div>
@@ -87,11 +112,14 @@ const TabelaPeso = ({ evento }) => {
                 graduacao={graduacao}
                 setGraduacao={setGraduacao}
 
-                evento={evento}
+                tabelas={tabelasPeso}
             />
 
             <ResultadoPeso
-                resultado={resultado?.resultado}
+                resultado={resultado}
+                sexo={sexo}
+                categoria={categoria}
+                graduacao={graduacao}
             />
 
         </section>
