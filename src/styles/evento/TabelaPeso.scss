@@ -1,0 +1,233 @@
+.tabela-peso {
+    width: 100%;
+}
+
+.tabela-peso-header {
+    max-width: 700px;
+    margin-bottom: 3rem;
+
+    span {
+        display: block;
+
+        margin-bottom: 1rem;
+
+        color: rgba(255, 255, 255, 0.4);
+
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        margin: 0 0 1rem;
+
+        color: #ffffff;
+
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 0.95;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    p {
+        max-width: 550px;
+
+        margin: 0;
+
+        color: rgba(255, 255, 255, 0.55);
+
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+}
+
+
+// --------------------------------------------------
+// FILTROS
+// --------------------------------------------------
+
+.filtro-peso {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1rem;
+
+    width: 100%;
+}
+
+.filtro-peso-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    label {
+        color: rgba(255, 255, 255, 0.45);
+
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    select {
+        width: 100%;
+        min-height: 54px;
+        padding: 0 1rem;
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0;
+
+        background: #0b0b0b;
+        color: #ffffff;
+
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+
+        outline: none;
+
+        cursor: pointer;
+
+        transition:
+            border-color 0.3s ease,
+            background 0.3s ease;
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        &:focus {
+            border-color: #ffffff;
+        }
+
+        &:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        option {
+            background: #0b0b0b;
+            color: #ffffff;
+        }
+    }
+}
+
+
+// --------------------------------------------------
+// ABSOLUTO
+// --------------------------------------------------
+
+.filtro-peso-info {
+    grid-column: 1 / -1;
+
+    padding: 1.5rem;
+
+    border-left: 2px solid #ffffff;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    p {
+        margin: 0;
+
+        color: rgba(255, 255, 255, 0.65);
+
+        font-size: 0.85rem;
+        line-height: 1.7;
+    }
+}
+
+
+// --------------------------------------------------
+// RESULTADO
+// --------------------------------------------------
+
+.resultado-peso {
+    margin-top: 3rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.resultado-peso-header {
+    padding: 1.5rem 0;
+
+    span {
+        color: rgba(255, 255, 255, 0.45);
+
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+}
+
+.resultado-peso-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.resultado-peso-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    padding: 1.25rem 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    span {
+        color: rgba(255, 255, 255, 0.7);
+
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    strong {
+        color: #ffffff;
+
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+}
+
+
+// --------------------------------------------------
+// RESPONSIVO
+// --------------------------------------------------
+
+@media (max-width: 700px) {
+
+    .filtro-peso {
+        grid-template-columns: 1fr;
+    }
+
+    .filtro-peso-info {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .tabela-peso-header {
+        margin-bottom: 2rem;
+
+        h2 {
+            font-size: 2.2rem;
+        }
+    }
+
+    .resultado-peso {
+        margin-top: 2rem;
+    }
+
+    .resultado-peso-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

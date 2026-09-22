@@ -1,0 +1,245 @@
+.evento-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.evento-card-clickable:hover {
+  .evento-card-cover img {
+    transform: scale(1.02);
+  }
+}
+
+.evento-card-main {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  border: 1px solid rgba(242, 242, 242, 0.12);
+  overflow: hidden;
+
+  .evento-card-cover {
+    width: 100%;
+    background: #000000;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  .evento-card-info {
+    flex: 1;
+    padding: 1rem;
+
+    .evento-card-heading {
+      .evento-card-type {
+        display: block;
+        font-size: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        color: #f2f2f2;
+        font-size: 1.15rem;
+        text-transform: uppercase;
+      }
+
+      .evento-card-subtitle {
+        font-size: 0.65rem;
+      }
+    }
+
+    .evento-card-date {
+      span {
+        text-transform: uppercase;
+      }
+
+      strong {
+        color: rgba(255, 255, 255, 0.747);
+        font-size: 0.55rem;
+        font-weight: 500;
+      }
+    }
+
+    .evento-card-actions {
+      padding-top: 1rem;
+
+      .evento-card-button {
+        width: 100%;
+        min-height: 36px;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid transparent;
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+        background: #e50914;
+        color: #f2f2f2;
+        &:hover {
+          background: #f2f2f2;
+          color: #000000;
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+}
+
+.evento-card-location {
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(242, 242, 242, 0.12);
+  border-top: 0;
+  background: #000000;
+
+  .evento-card-address {
+    .evento-card-address-label {
+      display: block;
+      font-size: 0.45rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 0.6rem;
+      line-height: 1.3;
+    }
+  }
+
+  .evento-card-map {
+    padding: 0.45rem 0.6rem;
+    border: 1px solid rgba(242, 242, 242, 0.18);
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+    span {
+      font-size: 0.7rem;
+    }
+    &:hover {
+      background: #e50914;
+      border-color: #e50914;
+      color: #f2f2f2;
+    }
+  }
+}
+
+.evento-aberto {
+  .evento-card-main {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+  }
+
+  .evento-card-cover {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .evento-card-info {
+    justify-content: flex-start;
+  }
+
+  .evento-card-heading {
+    .evento-card-type {
+      color: #e50914;
+    }
+  }
+
+  .evento-card-date {
+    margin-top: 2rem;
+  }
+
+}
+
+// ==================================================
+// RESPONSIVO
+// ==================================================
+
+@media (max-width: 800px) {
+  .evento-aberto {
+    .evento-card-main {
+      grid-template-columns: 1fr;
+    }
+
+    .evento-card-cover {
+      height: auto;
+
+      img {
+        width: 100%;
+
+        height: auto;
+
+        object-fit: contain;
+      }
+    }
+
+    .evento-card-info {
+      padding: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .evento-card-info {
+    padding: 0.9rem;
+  }
+
+  .evento-card-heading {
+    h2 {
+      font-size: 1.05rem;
+    }
+  }
+
+  .evento-card-location {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    padding: 0.75rem 0.9rem;
+  }
+
+  .evento-card-map {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  // ----------------------------------------------
+  // EVENTO ABERTO
+  // ----------------------------------------------
+
+  .evento-aberto {
+    .evento-card-info {
+      padding: 1.25rem;
+    }
+
+    .evento-card-heading {
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .evento-card-date {
+      margin-top: 1.5rem;
+    }
+  }
+}

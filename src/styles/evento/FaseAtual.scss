@@ -1,0 +1,218 @@
+.fase-atual {
+    width: 100%;
+}
+
+
+// ==================================================
+// LISTA
+// ==================================================
+
+.fase-atual-list {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+// ==================================================
+// ITEM
+// ==================================================
+
+.fase-item {
+    position: relative;
+
+    width: 100%;
+
+    border-top: 1px solid rgba(242, 242, 242, 0.12);
+
+
+    &:last-child {
+        border-bottom: 1px solid rgba(242, 242, 242, 0.12);
+    }
+
+
+    &[open] {
+
+        summary {
+            color: #F2F2F2;
+        }
+
+
+        .fase-item-icon {
+            background: #E50914;
+
+            border-color: #E50914;
+
+            color: #F2F2F2;
+
+            transform: rotate(45deg);
+        }
+
+
+        .fase-item-content {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+    }
+}
+
+
+// ==================================================
+// SUMMARY
+// ==================================================
+
+.fase-item summary {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    min-height: 58px;
+
+    padding: 0.9rem 0;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    color: rgba(242, 242, 242, 0.62);
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    transition:
+        color 0.25s ease,
+        padding 0.25s ease;
+
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+
+    &:hover {
+        color: #F2F2F2;
+
+        padding-left: 0.5rem;
+    }
+}
+
+
+// ==================================================
+// INDICADOR
+// ==================================================
+
+.fase-item-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 26px;
+
+    height: 26px;
+
+    border: 1px solid rgba(242, 242, 242, 0.2);
+
+    color: rgba(242, 242, 242, 0.55);
+
+    font-size: 1rem;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+// ==================================================
+// CONTEÚDO
+// ==================================================
+
+.fase-item-content {
+    max-width: 900px;
+
+    padding: 0 4rem 1.5rem 0;
+
+    opacity: 0;
+
+    transform: translateY(-4px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
+
+    p {
+        margin: 0;
+
+        color: rgba(242, 242, 242, 0.55);
+
+        font-size: 0.82rem;
+
+        line-height: 1.75;
+    }
+}
+
+
+// ==================================================
+// RESPONSIVO
+// ==================================================
+
+@media (max-width: 600px) {
+
+    .fase-item summary {
+        min-height: 54px;
+
+        padding: 0.8rem 0;
+
+        font-size: 0.65rem;
+
+
+        &:hover {
+            padding-left: 0;
+        }
+    }
+
+
+    .fase-item-icon {
+        width: 24px;
+
+        height: 24px;
+
+        font-size: 0.9rem;
+    }
+
+
+    .fase-item-content {
+        padding: 0 0 1.25rem;
+
+
+        p {
+            font-size: 0.78rem;
+
+            line-height: 1.65;
+        }
+    }
+}
