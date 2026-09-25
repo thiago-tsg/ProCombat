@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import '../../styles/evento/EventoCard.scss';
 
@@ -9,6 +9,9 @@ const EventoCard = ({
     eventoAberto = false,
     onInscrever
 }) => {
+
+    const navigate = useNavigate();
+
 
     const dataEvento = new Date(
         `${evento.dataEvento}T00:00:00`
@@ -57,8 +60,24 @@ const EventoCard = ({
     };
 
 
-    const cardContent = (
-        <>
+    const handleCardClick = () => {
+
+        if (onClick) {
+            onClick();
+            return;
+        }
+
+        navigate(`/eventos/${evento.id}`);
+
+    };
+
+
+    return (
+        <article
+            className="evento-card evento-card-clickable"
+            onClick={handleCardClick}
+        >
+
             <div className="evento-card-main flex-colum">
 
                 <div className="evento-card-cover">
@@ -180,38 +199,8 @@ const EventoCard = ({
                 </a>
 
             </div>
-        </>
-    );
 
-
-    // ==================================================
-    // CARD COM ONCLICK
-    // ==================================================
-
-    if (onClick) {
-
-        return (
-            <article
-                className="evento-card evento-card-clickable"
-                onClick={onClick}
-            >
-                {cardContent}
-            </article>
-        );
-    }
-
-
-    // ==================================================
-    // CARD COM URL
-    // ==================================================
-
-    return (
-        <Link
-            to={`/eventos/${evento.id}`}
-            className="evento-card evento-card-link"
-        >
-            {cardContent}
-        </Link>
+        </article>
     );
 };
 

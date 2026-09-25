@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '../../styles/main/EventosDestaque.scss';
 
-
-const CHAVE_LOCAL_STORAGE = 'procombat_eventos';
+import { buscarEventos } from '../../services/eventosService';
 
 
 const EventosDestaque = () => {
@@ -12,47 +11,45 @@ const EventosDestaque = () => {
   const [eventosDestaque, setEventosDestaque] = useState([]);
 
 
+  // ==================================================
+  // CARREGAR EVENTOS DO FIREBASE
+  // ==================================================
+
   useEffect(() => {
 
-    try {
+    const carregarEventos = async () => {
 
-      const eventosSalvos = localStorage.getItem(
-        CHAVE_LOCAL_STORAGE
-      );
+      try {
+
+        const eventosFirebase =
+          await buscarEventos();
 
 
-      if (!eventosSalvos) {
+        const eventosPublicados = eventosFirebase
+          .filter(
+            (evento) =>
+              evento.status === 'publicado'
+          )
+          .slice(0, 3);
+
+
+        setEventosDestaque(eventosPublicados);
+
+      } catch (erro) {
+
+        console.error(
+          'Erro ao carregar eventos em destaque:',
+          erro
+        );
+
         setEventosDestaque([]);
-        return;
+
       }
 
-
-      const eventosConvertidos = JSON.parse(eventosSalvos);
-
-
-      if (!Array.isArray(eventosConvertidos)) {
-        setEventosDestaque([]);
-        return;
-      }
+    };
 
 
-      const eventosPublicados = eventosConvertidos
-        .filter((evento) => evento.status === 'publicado')
-        .slice(0, 3);
-
-
-      setEventosDestaque(eventosPublicados);
-
-    } catch (erro) {
-
-      console.error(
-        'Erro ao carregar eventos em destaque:',
-        erro
-      );
-
-      setEventosDestaque([]);
-
-    }
+    carregarEventos();
 
   }, []);
 
@@ -186,7 +183,6 @@ const EventosDestaque = () => {
                           strokeWidth="1.8"
                           strokeLinecap="round"
                         />
-
 
                         <path
                           d="M3 9H21"

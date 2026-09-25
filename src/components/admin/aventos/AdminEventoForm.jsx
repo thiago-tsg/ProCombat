@@ -114,9 +114,7 @@ const AdminEventoForm = ({
 
         const eventoFinal = {
             ...evento,
-
-            id: evento.id || Date.now(),
-
+            ...(evento.id ? { id: evento.id } : {}),
             data: formatarData(evento.dataEvento)
         };
 

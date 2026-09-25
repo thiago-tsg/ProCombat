@@ -1,0 +1,388 @@
+.login {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 100px 20px 60px;
+
+  color: #f2f2f2;
+
+  background:
+    radial-gradient(circle at 15% 10%, rgba(229, 9, 20, 0.14), transparent 30%),
+    radial-gradient(circle at 85% 90%, rgba(229, 9, 20, 0.08), transparent 30%),
+    linear-gradient(135deg, #050505 0%, #0b0b0b 50%, #050505 100%);
+
+  box-sizing: border-box;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  padding: 42px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.018)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(229, 9, 20, 0.04);
+
+  backdrop-filter: blur(12px);
+
+  box-sizing: border-box;
+}
+
+.login-fechar {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-family: Arial, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-fechar:hover {
+  background: rgba(229, 9, 20, 0.12);
+
+  border-color: rgba(229, 9, 20, 0.35);
+
+  color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+/* -------------------------------- */
+/* TÍTULO */
+/* -------------------------------- */
+
+.login-container h1 {
+  margin: 0 0 12px;
+
+  color: #ffffff;
+
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
+}
+
+.login-container > p {
+  margin: 0 0 28px;
+
+  color: rgba(242, 242, 242, 0.65);
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* -------------------------------- */
+/* ERRO */
+/* -------------------------------- */
+
+.login-erro {
+  margin-bottom: 22px;
+  padding: 13px 15px;
+
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  border-radius: 8px;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #ff6b73;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* -------------------------------- */
+/* FORMULÁRIO */
+/* -------------------------------- */
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+/* -------------------------------- */
+/* LABEL */
+/* -------------------------------- */
+
+.login-field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: rgba(242, 242, 242, 0.78);
+}
+
+/* -------------------------------- */
+/* INPUT */
+/* -------------------------------- */
+
+.login-field input {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+
+  outline: none;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-field input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.login-field input:focus {
+  border-color: #e50914;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+}
+
+/* -------------------------------- */
+/* BOTÃO LOGIN */
+/* -------------------------------- */
+
+.login-container form button {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 4px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #e50914;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-container form button:hover:not(:disabled) {
+  background: #f20b17;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 14px 30px rgba(229, 9, 20, 0.28);
+}
+
+.login-container form button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-container form button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/* -------------------------------- */
+/* DIVISOR */
+/* -------------------------------- */
+
+.login-divisor {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 26px 0;
+}
+
+.login-divisor::before,
+.login-divisor::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.login-divisor span {
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+/* -------------------------------- */
+/* GOOGLE */
+/* -------------------------------- */
+
+.login-google {
+  width: 100%;
+  height: 50px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.login-google:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(255, 255, 255, 0.25);
+
+  transform: translateY(-1px);
+}
+
+.login-google:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-google:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+/* -------------------------------- */
+/* RESPONSIVO */
+/* -------------------------------- */
+
+@media (max-width: 600px) {
+  .login {
+    align-items: flex-start;
+
+    padding: 90px 15px 40px;
+  }
+
+  .login-container {
+    padding: 30px 22px;
+
+    border-radius: 14px;
+  }
+
+  .login-container h1 {
+    font-size: 1.65rem;
+  }
+
+  .login-container > p {
+    font-size: 0.9rem;
+  }
+
+  .login-field input {
+    height: 48px;
+  }
+
+  .login-container form button,
+  .login-google {
+    height: 50px;
+  }
+}
+
+@media (max-width: 380px) {
+  .login {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .login-container {
+    padding: 26px 18px;
+  }
+
+  .login-container h1 {
+    font-size: 1.5rem;
+  }
+}

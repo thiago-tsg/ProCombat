@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import '../../styles/evento/Eventos.scss';
 
 import EventoCard from './EventoCard';
@@ -7,8 +8,10 @@ import EventoAbas from './EventoAbas';
 
 import InscricaoEvento from '../inscricao/InscricaoEvento';
 
-
-const CHAVE_LOCAL_STORAGE = 'procombat_eventos';
+import {
+    buscarEventos,
+    buscarEvento
+} from '../../services/eventosService';
 
 
 const Eventos = () => {
@@ -25,66 +28,50 @@ const Eventos = () => {
 
 
     // ==================================================
-    // CARREGAR EVENTOS
+    // CARREGAR EVENTOS DO FIREBASE
     // ==================================================
 
     useEffect(() => {
 
-        try {
+        const carregarEventos = async () => {
 
-            const eventosSalvos = localStorage.getItem(
-                CHAVE_LOCAL_STORAGE
-            );
+            try {
 
-
-            if (!eventosSalvos) {
-
-                setEventos([]);
-
-                setCarregando(false);
-
-                return;
-            }
+                setCarregando(true);
 
 
-            const eventosConvertidos = JSON.parse(
-                eventosSalvos
-            );
+                const eventosFirebase =
+                    await buscarEventos();
 
 
-            if (!Array.isArray(eventosConvertidos)) {
-
-                setEventos([]);
-
-                setCarregando(false);
-
-                return;
-            }
+                const eventosPublicados =
+                    eventosFirebase.filter(
+                        (evento) =>
+                            evento.status === 'publicado'
+                    );
 
 
-            const eventosPublicados =
-                eventosConvertidos.filter(
-                    (evento) =>
-                        evento.status === 'publicado'
+                setEventos(eventosPublicados);
+
+            } catch (erro) {
+
+                console.error(
+                    'Erro ao carregar eventos públicos:',
+                    erro
                 );
 
+                setEventos([]);
 
-            setEventos(eventosPublicados);
+            } finally {
 
-        } catch (erro) {
+                setCarregando(false);
 
-            console.error(
-                'Erro ao carregar eventos públicos:',
-                erro
-            );
+            }
 
-            setEventos([]);
+        };
 
-        } finally {
 
-            setCarregando(false);
-
-        }
+        carregarEventos();
 
     }, []);
 
@@ -115,15 +102,76 @@ const Eventos = () => {
 
 
     // ==================================================
-    // ENCONTRAR EVENTO PELA URL
+    // EVENTO SELECIONADO
     // ==================================================
 
-    const eventoSelecionado = id
-        ? eventos.find(
-            (evento) =>
-                String(evento.id) === String(id)
-        )
-        : null;
+    const [eventoSelecionado, setEventoSelecionado] =
+        useState(null);
+
+
+    // ==================================================
+    // CARREGAR EVENTO ESPECÍFICO
+    // ==================================================
+
+    useEffect(() => {
+
+        const carregarEvento = async () => {
+
+            if (!id) {
+
+                setEventoSelecionado(null);
+
+                return;
+
+            }
+
+
+            try {
+
+                setCarregando(true);
+
+
+                const eventoFirebase =
+                    await buscarEvento(id);
+
+
+                if (
+                    !eventoFirebase ||
+                    eventoFirebase.status !== 'publicado'
+                ) {
+
+                    setEventoSelecionado(null);
+
+                    return;
+
+                }
+
+
+                setEventoSelecionado(
+                    eventoFirebase
+                );
+
+            } catch (erro) {
+
+                console.error(
+                    'Erro ao carregar evento:',
+                    erro
+                );
+
+                setEventoSelecionado(null);
+
+            } finally {
+
+                setCarregando(false);
+
+            }
+
+        };
+
+
+        carregarEvento();
+
+    }, [id]);
 
 
     // ==================================================
@@ -217,7 +265,6 @@ const Eventos = () => {
     // ==================================================
 
     if (eventoSelecionado) {
-
         return (
             <section className="eventos">
 

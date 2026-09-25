@@ -1,0 +1,300 @@
+.completar-cadastro {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 100px 20px 60px;
+
+  color: #f2f2f2;
+
+  background:
+    radial-gradient(circle at 15% 10%, rgba(229, 9, 20, 0.14), transparent 30%),
+    radial-gradient(circle at 85% 90%, rgba(229, 9, 20, 0.08), transparent 30%),
+    linear-gradient(135deg, #050505 0%, #0b0b0b 50%, #050505 100%);
+
+  box-sizing: border-box;
+}
+
+.completar-cadastro-container {
+  width: 100%;
+  max-width: 520px;
+
+  padding: 42px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.018)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(229, 9, 20, 0.04);
+
+  backdrop-filter: blur(12px);
+
+  box-sizing: border-box;
+}
+
+/* -------------------------------- */
+/* TÍTULO */
+/* -------------------------------- */
+
+.completar-cadastro-container h1 {
+  margin: 0 0 12px;
+
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+}
+
+.completar-cadastro-container > p {
+  margin: 0 0 28px;
+
+  color: rgba(242, 242, 242, 0.65);
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Saudação */
+
+.completar-cadastro-container > p:nth-of-type(2) {
+  margin-top: -12px;
+  margin-bottom: 28px;
+
+  color: #ffffff;
+
+  font-weight: 600;
+}
+
+/* -------------------------------- */
+/* ERRO */
+/* -------------------------------- */
+
+.completar-cadastro-erro {
+  margin-bottom: 22px;
+  padding: 13px 15px;
+
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  border-radius: 8px;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #ff6b73;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* -------------------------------- */
+/* FORMULÁRIO */
+/* -------------------------------- */
+
+.completar-cadastro-container form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.completar-cadastro-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+/* -------------------------------- */
+/* LABEL */
+/* -------------------------------- */
+
+.completar-cadastro-field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: rgba(242, 242, 242, 0.78);
+}
+
+/* -------------------------------- */
+/* INPUT / SELECT */
+/* -------------------------------- */
+
+.completar-cadastro-field input,
+.completar-cadastro-field select {
+  width: 100%;
+  height: 50px;
+
+  padding: 0 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+
+  outline: none;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Data */
+
+.completar-cadastro-field input[type="date"] {
+  color-scheme: dark;
+}
+
+/* Select */
+
+.completar-cadastro-field select {
+  cursor: pointer;
+}
+
+.completar-cadastro-field select option {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* Placeholder / valor vazio */
+
+.completar-cadastro-field input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* -------------------------------- */
+/* FOCO */
+/* -------------------------------- */
+
+.completar-cadastro-field input:focus,
+.completar-cadastro-field select:focus {
+  border-color: #e50914;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
+}
+
+/* -------------------------------- */
+/* BOTÃO */
+/* -------------------------------- */
+
+.completar-cadastro-container form button {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #e50914;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(229, 9, 20, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.completar-cadastro-container form button:hover:not(:disabled) {
+  background: #f20b17;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 14px 30px rgba(229, 9, 20, 0.28);
+}
+
+.completar-cadastro-container form button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.completar-cadastro-container form button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/* -------------------------------- */
+/* RESPONSIVO */
+/* -------------------------------- */
+
+@media (max-width: 600px) {
+  .completar-cadastro {
+    align-items: flex-start;
+
+    padding: 90px 15px 40px;
+  }
+
+  .completar-cadastro-container {
+    padding: 30px 22px;
+
+    border-radius: 14px;
+  }
+
+  .completar-cadastro-container h1 {
+    font-size: 1.65rem;
+  }
+
+  .completar-cadastro-container > p {
+    font-size: 0.9rem;
+  }
+
+  .completar-cadastro-field input,
+  .completar-cadastro-field select {
+    height: 48px;
+  }
+
+  .completar-cadastro-container form button {
+    height: 50px;
+  }
+}
+
+@media (max-width: 380px) {
+  .completar-cadastro {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .completar-cadastro-container {
+    padding: 26px 18px;
+  }
+
+  .completar-cadastro-container h1 {
+    font-size: 1.5rem;
+  }
+}

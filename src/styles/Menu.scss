@@ -1,10 +1,18 @@
 .menu {
   position: fixed;
+
   padding: 0 15rem;
+
   z-index: 1000;
+
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.301);
   height: 80px;
+
+  background-color: rgba(0, 0, 0, 0.301);
+
+  // ------------------------------------------------
+  // LOGO
+  // ------------------------------------------------
 
   .menu-logo {
     flex-shrink: 0;
@@ -12,31 +20,45 @@
     a {
       display: flex;
       align-items: center;
+
       width: 5rem;
+
       transition: transform 0.25s ease;
+
       &:hover {
         transform: scale(1.02);
       }
 
       img {
         display: block;
+
         width: 100%;
         height: auto;
+
         object-fit: contain;
       }
     }
   }
 
+  // ------------------------------------------------
+  // LINKS
+  // ------------------------------------------------
+
   .menu-links {
     a {
       position: relative;
+
       display: inline-flex;
       align-items: center;
+
       font-size: 0.78rem;
       font-weight: 600;
+
       text-transform: uppercase;
       letter-spacing: 0.02rem;
+
       white-space: nowrap;
+
       transition:
         color 0.25s ease,
         opacity 0.25s ease;
@@ -75,9 +97,14 @@
     }
   }
 
+  // ------------------------------------------------
+  // AÇÕES DESKTOP
+  // ------------------------------------------------
+
   .menu-actions {
     a {
       text-transform: uppercase;
+
       transition:
         color 0.25s ease,
         background 0.25s ease,
@@ -97,53 +124,229 @@
 
     .menu-register {
       padding: 0.7rem 1rem;
+
       background: #e50914;
+
       border: 1px solid #e50914;
       border-radius: 3px;
+
       &:hover {
         background: #b80710;
+
         border-color: #b80710;
+
         transform: translateY(-1px);
       }
     }
   }
 
+  // ------------------------------------------------
+  // USUÁRIO LOGADO
+  // ------------------------------------------------
+
+  .menu-user {
+    position: relative;
+  }
+
+  .menu-user-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 40px;
+
+    padding: 0.7rem 1rem;
+
+    border: 1px solid #e50914;
+    border-radius: 3px;
+
+    background: #e50914;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+
+    cursor: pointer;
+
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+
+    &:hover {
+      background: #b80710;
+
+      border-color: #b80710;
+
+      transform: translateY(-1px);
+    }
+  }
+
+  .menu-user-arrow {
+    display: inline-flex;
+
+    font-size: 0.8rem;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+  }
+
+  .menu-user-arrow-open {
+    transform: rotate(180deg);
+  }
+
+  // ------------------------------------------------
+  // DROPDOWN DO USUÁRIO
+  // ------------------------------------------------
+
+  .menu-user-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    min-width: 180px;
+
+    padding: 6px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    background: linear-gradient(145deg, #151515 0%, #090909 100%);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+
+    z-index: 1100;
+
+    a,
+    button {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+
+      min-height: 42px;
+
+      padding: 0.7rem 0.8rem;
+
+      border: none;
+      border-radius: 3px;
+
+      background: transparent;
+
+      color: #f2f2f2;
+
+      font-family: "Inter", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+
+      text-decoration: none;
+      text-transform: uppercase;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      box-sizing: border-box;
+
+      transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        padding-left 0.2s ease;
+    }
+
+    a:hover {
+      color: #ffffff;
+
+      background: rgba(255, 255, 255, 0.07);
+
+      padding-left: 1rem;
+    }
+
+    button:hover {
+      color: #ffffff;
+
+      background: rgba(229, 9, 20, 0.12);
+
+      padding-left: 1rem;
+    }
+  }
+
+  // ------------------------------------------------
+  // HAMBURGER
+  // ------------------------------------------------
+
   .menu-toggle {
     display: none;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     gap: 5px;
+
     width: 42px;
     height: 42px;
+
     padding: 0;
+
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 3px;
+
     background: rgba(0, 0, 0, 0.25);
+
     color: #ffffff;
+
     cursor: pointer;
+
     transition:
       background 0.25s ease,
       border-color 0.25s ease;
+
     span {
       display: block;
+
       width: 22px;
       height: 2px;
+
       background: currentColor;
+
       transition:
         transform 0.25s ease,
         opacity 0.25s ease;
     }
+
     &:hover {
       background: rgba(229, 9, 20, 0.15);
+
       border-color: rgba(229, 9, 20, 0.5);
     }
   }
+
+  // ------------------------------------------------
+  // MOBILE
+  // ------------------------------------------------
 
   .menu-mobile {
     display: none;
   }
 }
+
+// ====================================================
+// TABLET / MOBILE
+// ====================================================
 
 @media (max-width: 768px) {
   .menu {
@@ -162,28 +365,48 @@
       display: flex;
     }
 
+    // ------------------------------------------------
+    // MENU MOBILE
+    // ------------------------------------------------
+
     .menu-mobile {
       position: absolute;
+
       top: calc(100% + 0.75rem);
+
       left: 0;
       right: 0;
+
       display: flex;
       flex-direction: column;
+
       padding: 1rem;
-      margin: .3rem;
+
+      margin: 0.3rem;
+
       background: rgba(8, 8, 8, 0.96);
+
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
+
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 4px;
+
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+
       opacity: 0;
       visibility: hidden;
+
       transform: translateY(-10px);
+
       transition:
         opacity 0.25s ease,
         visibility 0.25s ease,
         transform 0.25s ease;
+
+      // ------------------------------------------------
+      // LINKS MOBILE
+      // ------------------------------------------------
 
       .menu-mobile-links {
         display: flex;
@@ -250,13 +473,13 @@
 
         a {
           display: flex;
+
           justify-content: center;
           align-items: center;
 
           min-height: 45px;
 
           font-family: "Inter", sans-serif;
-
           font-size: 0.75rem;
           font-weight: 700;
 
@@ -292,8 +515,43 @@
 
           &:hover {
             background: #b80710;
+
             border-color: #b80710;
           }
+        }
+
+        // ------------------------------------------------
+        // USUÁRIO LOGADO MOBILE
+        // ------------------------------------------------
+
+        .menu-user-mobile {
+          width: 100%;
+        }
+
+        .menu-user-mobile .menu-user-button {
+          width: 100%;
+
+          justify-content: space-between;
+
+          min-height: 45px;
+        }
+
+        .menu-user-mobile .menu-user-dropdown {
+          position: static;
+
+          width: 100%;
+
+          min-width: 0;
+
+          margin-top: 8px;
+
+          box-sizing: border-box;
+
+          box-shadow: none;
+
+          background: rgba(255, 255, 255, 0.025);
+
+          border-color: rgba(255, 255, 255, 0.08);
         }
       }
     }
@@ -305,12 +563,15 @@
     &.menu-open {
       .menu-mobile {
         opacity: 1;
+
         visibility: visible;
 
         transform: translateY(0);
       }
 
-      // Hamburger → X
+      // ------------------------------------------------
+      // HAMBURGER → X
+      // ------------------------------------------------
 
       .menu-toggle {
         span {
