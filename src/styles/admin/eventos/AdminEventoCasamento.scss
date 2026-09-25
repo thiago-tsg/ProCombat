@@ -1,0 +1,393 @@
+.admin-evento-casamento {
+  width: 100%;
+
+  margin-top: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.025),
+    rgba(255, 255, 255, 0.01)
+  );
+
+  overflow: hidden;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.admin-evento-casamento__header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem 1.1rem;
+
+  border: none;
+
+  background: transparent;
+
+  color: #f2f2f2;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-evento-casamento__header:hover {
+  background: rgba(229, 9, 20, 0.05);
+}
+
+/* ==========================================
+   TITULO
+========================================== */
+
+.admin-evento-casamento__header > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-evento-casamento__titulo {
+  color: #f2f2f2;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.admin-evento-casamento__contador {
+  padding: 0.25rem 0.55rem;
+
+  border: 1px solid rgba(229, 9, 20, 0.25);
+  border-radius: 999px;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #aaa;
+
+  font-size: 0.7rem;
+}
+
+/* ==========================================
+   SETA
+========================================== */
+
+.admin-evento-casamento__seta {
+  color: #aaa;
+
+  font-size: 0.7rem;
+
+  transition: transform 0.2s ease;
+}
+
+.admin-evento-casamento__seta.aberto {
+  transform: rotate(180deg);
+}
+
+/* ==========================================
+   CONTEUDO
+========================================== */
+
+.admin-evento-casamento__conteudo {
+  padding: 0 1.1rem 1.1rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================
+   RESUMO
+========================================== */
+
+.admin-evento-casamento__resumo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  margin: 1rem 0;
+}
+
+.admin-evento-casamento__resumo strong {
+  color: #e50914;
+
+  font-size: 1.4rem;
+}
+
+.admin-evento-casamento__resumo span {
+  color: #999;
+
+  font-size: 0.78rem;
+}
+
+/* ==========================================
+   BOTAO GERAR
+========================================== */
+
+.admin-evento-casamento__gerar {
+  width: 100%;
+
+  padding: 0.75rem 1rem;
+
+  border: 1px solid rgba(229, 9, 20, 0.45);
+  border-radius: 8px;
+
+  background: rgba(229, 9, 20, 0.1);
+
+  color: #f2f2f2;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-evento-casamento__gerar:hover:not(:disabled) {
+  background: rgba(229, 9, 20, 0.18);
+
+  border-color: rgba(229, 9, 20, 0.7);
+
+  transform: translateY(-1px);
+}
+
+.admin-evento-casamento__gerar:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ==========================================
+   AVISOS / MENSAGENS
+========================================== */
+
+.admin-evento-casamento__mensagem,
+.admin-evento-casamento__aviso {
+  margin: 1rem 0 0;
+
+  color: #777;
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+}
+
+.admin-evento-casamento__aviso {
+  color: #999;
+}
+
+/* ==========================================
+   RESULTADO
+========================================== */
+
+.admin-evento-casamento__resultado {
+  margin-top: 1.5rem;
+}
+
+.admin-evento-casamento__resultado h3,
+.admin-evento-casamento__sobras h3 {
+  margin: 0 0 0.8rem;
+
+  color: #f2f2f2;
+
+  font-size: 0.85rem;
+}
+
+/* ==========================================
+   LISTA DE LUTAS
+========================================== */
+
+.admin-evento-casamento__lutas {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.75rem;
+}
+
+/* ==========================================
+   CARD DA LUTA
+========================================== */
+
+.admin-casamento-luta {
+  padding: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* ==========================================
+   NUMERO
+========================================== */
+
+.admin-casamento-luta__numero {
+  margin-bottom: 0.8rem;
+
+  color: #e50914;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+/* ==========================================
+   ATLETAS
+========================================== */
+
+.admin-casamento-luta__atletas {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 0.75rem;
+}
+
+.admin-casamento-luta__atletas > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.2rem;
+}
+
+.admin-casamento-luta__atletas > div:last-child {
+  text-align: right;
+}
+
+.admin-casamento-luta__atletas strong {
+  color: #f2f2f2;
+
+  font-size: 0.85rem;
+}
+
+.admin-casamento-luta__atletas span:not(.admin-casamento-luta__vs) {
+  color: #888;
+
+  font-size: 0.7rem;
+}
+
+.admin-casamento-luta__vs {
+  color: #e50914;
+
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+/* ==========================================
+   DETALHES
+========================================== */
+
+.admin-casamento-luta__detalhes {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 0.4rem;
+
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-casamento-luta__detalhes span {
+  padding: 0.3rem 0.5rem;
+
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #999;
+
+  font-size: 0.65rem;
+}
+
+/* ==========================================
+   SOBRAS
+========================================== */
+
+.admin-evento-casamento__sobras {
+  margin-top: 1.5rem;
+
+  padding-top: 1rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-casamento-sobra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  padding: 0.75rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-casamento-sobra + .admin-casamento-sobra {
+  margin-top: 0.5rem;
+}
+
+.admin-casamento-sobra strong {
+  width: 100%;
+
+  color: #f2f2f2;
+
+  font-size: 0.8rem;
+}
+
+.admin-casamento-sobra span {
+  padding: 0.25rem 0.45rem;
+
+  border-radius: 4px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #888;
+
+  font-size: 0.65rem;
+}
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 600px) {
+  .admin-evento-casamento__header > div {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 0.35rem;
+  }
+
+  .admin-casamento-luta__atletas {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-casamento-luta__atletas > div:last-child {
+    text-align: left;
+  }
+
+  .admin-casamento-luta__vs {
+    display: none;
+  }
+}

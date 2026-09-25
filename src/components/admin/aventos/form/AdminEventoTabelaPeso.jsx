@@ -1,5 +1,3 @@
-
-
 import AdminEventoFormSection from './AdminEventoFormSection';
 
 
@@ -52,9 +50,14 @@ const tabelaPesoPadrao = [
         id: 1,
         tipoPeso: 'atleta',
         pesagem: 'peso',
+
+        // A modalidade agora é um campo separado.
+        modalidade: 'gi',
+
         sexo: 'feminino',
-        categoria: 'MASTER 2 NOGI',
+        categoria: 'MASTER 2',
         graduacao: 'MARROM',
+
         resultado: resultadosPesoPadrao
     }
 ];
@@ -79,11 +82,19 @@ const AdminEventoTabelaPeso = ({
 
         const novaTabela = {
             id: gerarId(),
+
             tipoPeso: 'atleta',
             pesagem: 'peso',
+
+            // Gi / NoGi ficam independentes da categoria.
+            modalidade: 'gi',
+
             sexo: 'feminino',
+
             categoria: evento.categorias?.[0] || '',
+
             graduacao: evento.graduacoes?.[0] || '',
+
             resultado: []
         };
 
@@ -143,6 +154,7 @@ const AdminEventoTabelaPeso = ({
 
                 return {
                     ...tabela,
+
                     resultado: [
                         ...(tabela.resultado || []),
                         {
@@ -233,7 +245,7 @@ const AdminEventoTabelaPeso = ({
         <AdminEventoFormSection
             numero="07"
             titulo="Tabela de peso"
-            descricao="Configure as combinações de categoria, graduação, sexo e limites de peso."
+            descricao="Configure as combinações de modalidade, categoria, graduação, sexo e limites de peso."
         >
 
             <div className="admin-evento-tabela-peso">
@@ -247,7 +259,7 @@ const AdminEventoTabelaPeso = ({
                         </h4>
 
                         <p>
-                            Cada tabela pode representar uma combinação específica de categoria e graduação.
+                            Cada tabela representa uma combinação específica de modalidade, categoria, graduação e sexo.
                         </p>
 
                     </div>
@@ -304,6 +316,44 @@ const AdminEventoTabelaPeso = ({
                                 <div className="admin-form-group">
 
                                     <label>
+                                        Modalidade
+                                    </label>
+
+                                    <select
+                                        value={tabela.modalidade || ''}
+                                        onChange={(e) =>
+                                            alterarTabela(
+                                                tabelaIndex,
+                                                'modalidade',
+                                                e.target.value
+                                            )
+                                        }
+                                    >
+
+                                        <option value="">
+                                            Selecione
+                                        </option>
+
+                                        <option value="gi">
+                                            Gi
+                                        </option>
+
+                                        <option value="nogi">
+                                            NoGi
+                                        </option>
+
+                                        <option value="absoluto">
+                                            Absoluto
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div className="admin-form-group">
+
+                                    <label>
                                         Tipo de peso
                                     </label>
 
@@ -317,6 +367,7 @@ const AdminEventoTabelaPeso = ({
                                             )
                                         }
                                     >
+
                                         <option value="atleta">
                                             Atleta
                                         </option>
@@ -324,6 +375,7 @@ const AdminEventoTabelaPeso = ({
                                         <option value="categoria">
                                             Categoria
                                         </option>
+
                                     </select>
 
                                 </div>
@@ -345,6 +397,7 @@ const AdminEventoTabelaPeso = ({
                                             )
                                         }
                                     >
+
                                         <option value="peso">
                                             Peso
                                         </option>
@@ -356,6 +409,7 @@ const AdminEventoTabelaPeso = ({
                                         <option value="sem-quimono">
                                             Sem quimono
                                         </option>
+
                                     </select>
 
                                 </div>
@@ -377,6 +431,7 @@ const AdminEventoTabelaPeso = ({
                                             )
                                         }
                                     >
+
                                         <option value="feminino">
                                             Feminino
                                         </option>
@@ -388,6 +443,7 @@ const AdminEventoTabelaPeso = ({
                                         <option value="misto">
                                             Misto
                                         </option>
+
                                     </select>
 
                                 </div>

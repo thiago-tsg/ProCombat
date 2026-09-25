@@ -1,0 +1,235 @@
+.admin-evento-inscricoes {
+  width: 100%;
+  margin-top: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.015)
+  );
+
+  overflow: hidden;
+}
+
+.admin-evento-inscricoes__header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem 1.2rem;
+
+  border: 0;
+  background: transparent;
+
+  color: #f2f2f2;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-evento-inscricoes__header:hover {
+  background: rgba(229, 9, 20, 0.06);
+}
+
+.admin-evento-inscricoes__header > div {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.admin-evento-inscricoes__titulo {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.admin-evento-inscricoes__contador {
+  padding: 0.25rem 0.55rem;
+
+  border-radius: 999px;
+
+  background: rgba(229, 9, 20, 0.12);
+
+  color: #e50914;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.admin-evento-inscricoes__seta {
+  font-size: 0.75rem;
+
+  transition: transform 0.2s ease;
+}
+
+.admin-evento-inscricoes__seta.aberto {
+  transform: rotate(180deg);
+}
+
+.admin-evento-inscricoes__conteudo {
+  padding: 0 1.2rem 1.2rem;
+}
+
+.admin-evento-inscricoes__mensagem {
+  margin: 0;
+  padding: 1.5rem 0;
+
+  color: rgba(242, 242, 242, 0.55);
+
+  font-size: 0.9rem;
+}
+
+.admin-evento-inscricoes__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.admin-inscricao {
+  padding: 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.admin-inscricao__principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+
+.admin-inscricao__principal h4 {
+  margin: 0;
+
+  color: #f2f2f2;
+
+  font-size: 0.95rem;
+}
+
+.admin-inscricao__principal span {
+  color: rgba(242, 242, 242, 0.55);
+
+  font-size: 0.8rem;
+}
+
+.admin-inscricao__informacoes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 0.8rem;
+}
+
+.admin-inscricao__informacoes div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.admin-inscricao small {
+  color: rgba(242, 242, 242, 0.45);
+
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-inscricao strong {
+  color: #f2f2f2;
+
+  font-size: 0.82rem;
+}
+
+.admin-inscricao__modalidades {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-inscricao__modalidades span {
+  color: #f2f2f2;
+
+  font-size: 0.82rem;
+}
+
+.status-pago {
+  color: #7af298 !important;
+}
+
+.status-pagamento_manual {
+  color: #7af298 !important;
+}
+
+.status-aguardando {
+  color: #f2f2f2 !important;
+}
+
+.admin-inscricao__acoes {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.admin-inscricao__acoes button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  border-radius: 8px;
+  background: rgba(229, 9, 20, 0.1);
+  color: #f2f2f2;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.admin-inscricao__acoes button:hover {
+  background: rgba(229, 9, 20, 0.2);
+  border-color: rgba(229, 9, 20, 0.65);
+  transform: translateY(-1px);
+}
+.admin-inscricao__acoes button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .admin-inscricao__informacoes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-inscricao__principal {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .admin-inscricao__informacoes {
+    grid-template-columns: 1fr;
+  }
+}

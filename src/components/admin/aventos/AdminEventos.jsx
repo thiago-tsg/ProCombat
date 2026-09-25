@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import AdminEventoForm from './AdminEventoForm';
+import AdminEventoInscricoes from './form/AdminEventoInscricoes';
 
 import {
     buscarEventos,
@@ -11,6 +12,7 @@ import {
 } from '../../../services/eventosService';
 
 import '../../../styles/admin/eventos/AdminEventos.scss';
+import AdminEventoCasamento from './form/AdminEventoCasamento';
 
 
 const AdminEventos = () => {
@@ -562,6 +564,27 @@ const AdminEventos = () => {
 
                                                 </div>
 
+
+                                                {/* ============================== */}
+                                                {/* INSCRIÇÕES DO EVENTO */}
+                                                {/* ============================== */}
+
+                                                <AdminEventoInscricoes
+                                                    evento={evento}
+                                                />
+
+                                                {/* ============================== */}
+                                                {/* CASAMENTO */}
+                                                {/* ============================== */}
+
+                                                <AdminEventoCasamento
+                                                    evento={evento}
+                                                />
+
+
+                                                {/* ============================== */}
+                                                {/* AÇÕES */}
+                                                {/* ============================== */}
 
                                                 <div className="admin-evento-card-acoes">
 

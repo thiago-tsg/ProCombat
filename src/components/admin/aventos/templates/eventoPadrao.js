@@ -60,25 +60,206 @@ const infoGeraisPadrao = {
     "O glossário apresenta os principais termos utilizados na organização, categorias, regras e andamento das competições.",
 };
 
+/*
+|--------------------------------------------------------------------------
+| CATEGORIAS PADRÃO
+|--------------------------------------------------------------------------
+*/
+
 const categoriasPadrao = [
-  "PRE-MIRIM NOGI",
-  "MIRIM NOGI",
-  "INFANTIL A NOGI",
-  "INFANTIL B NOGI",
-  "INFANTO-JUVENIL A NOGI",
-  "INFANTO-JUVENIL B NOGI",
-  "JUVENIL NOGI",
-  "ADULTO NOGI",
-  "MASTER 1 NOGI",
-  "MASTER 2 NOGI",
-  "MASTER 3 NOGI",
-  "MASTER 4 NOGI",
-  "MASTER 5 NOGI",
-  "MASTER 6 NOGI",
-  "MASTER 7 NOGI",
+  "PRE-MIRIM",
+  "MIRIM",
+
+  "INFANTIL A",
+  "INFANTIL B",
+
+  "INFANTO-JUVENIL A",
+  "INFANTO-JUVENIL B",
+
+  "JUVENIL",
+
+  "ADULTO",
+
+  "MASTER 1",
+  "MASTER 2",
+  "MASTER 3",
+  "MASTER 4",
+  "MASTER 5",
+  "MASTER 6",
+  "MASTER 7",
 ];
 
+/*
+|--------------------------------------------------------------------------
+| GRADUAÇÕES PADRÃO
+|--------------------------------------------------------------------------
+*/
+
 const graduacoesPadrao = ["BRANCA", "AZUL", "ROXA", "MARROM", "PRETA"];
+
+/*
+|--------------------------------------------------------------------------
+| MODALIDADES PADRÃO
+|--------------------------------------------------------------------------
+*/
+
+const modalidadesPadrao = [
+  {
+    valor: "gi",
+    label: "Gi",
+  },
+  {
+    valor: "nogi",
+    label: "NoGi",
+  },
+];
+
+/*
+|--------------------------------------------------------------------------
+| SEXOS PADRÃO
+|--------------------------------------------------------------------------
+*/
+
+const sexosPadrao = [
+  {
+    valor: "masculino",
+    label: "Masculino",
+  },
+  {
+    valor: "feminino",
+    label: "Feminino",
+  },
+];
+
+/*
+|--------------------------------------------------------------------------
+| FAIXAS DE PESO PADRÃO
+|--------------------------------------------------------------------------
+|
+| A mesma estrutura de faixas fica disponível inicialmente em todas as
+| combinações.
+|
+| O administrador poderá alterar os limites posteriormente.
+|
+*/
+
+const resultadosPesoPadrao = [
+  {
+    id: 1,
+    nome: "GALO",
+    limite: "até 46,500 kg",
+  },
+
+  {
+    id: 2,
+    nome: "PLUMA",
+    limite: "até 51,500 kg",
+  },
+
+  {
+    id: 3,
+    nome: "PENA",
+    limite: "até 56,500 kg",
+  },
+
+  {
+    id: 4,
+    nome: "LEVE",
+    limite: "até 61,500 kg",
+  },
+
+  {
+    id: 5,
+    nome: "MEDIO",
+    limite: "até 66,500 kg",
+  },
+
+  {
+    id: 6,
+    nome: "MEIO-PESADO",
+    limite: "até 71,500 kg",
+  },
+
+  {
+    id: 7,
+    nome: "PESADO",
+    limite: "até 76,500 kg",
+  },
+
+  {
+    id: 8,
+    nome: "SUPER-PESADO",
+    limite: "acima de 76,501 kg",
+  },
+];
+
+/*
+|--------------------------------------------------------------------------
+| GERAR TABELAS DE PESO PADRÃO
+|--------------------------------------------------------------------------
+|
+| Cada combinação possui:
+|
+| modalidade
+| sexo
+| categoria
+| graduação
+| resultado
+|
+| Exemplo:
+|
+| ADULTO + AZUL + MASCULINO + GI
+| ADULTO + AZUL + MASCULINO + NOGI
+| ADULTO + AZUL + FEMININO + GI
+| ADULTO + AZUL + FEMININO + NOGI
+|
+| E assim por diante.
+|
+*/
+
+const gerarTabelaPesoPadrao = () => {
+  let id = 1;
+
+  const tabelas = [];
+
+  modalidadesPadrao.forEach((modalidade) => {
+    sexosPadrao.forEach((sexo) => {
+      categoriasPadrao.forEach((categoria) => {
+        graduacoesPadrao.forEach((graduacao) => {
+          tabelas.push({
+            id: id++,
+
+            tipoPeso: "atleta",
+
+            pesagem: "peso",
+
+            modalidade: modalidade.valor,
+
+            sexo: sexo.valor,
+
+            categoria,
+
+            graduacao,
+
+            resultado: resultadosPesoPadrao.map((resultado) => ({
+              ...resultado,
+            })),
+          });
+        });
+      });
+    });
+  });
+
+  return tabelas;
+};
+
+const tabelaPesoPadrao = gerarTabelaPesoPadrao();
+
+/*
+|--------------------------------------------------------------------------
+| FASES PADRÃO
+|--------------------------------------------------------------------------
+*/
 
 const fasesPadrao = [
   {
@@ -87,24 +268,28 @@ const fasesPadrao = [
     texto:
       "Nesta etapa o atleta pode conferir seus dados e verificar se sua inscrição está correta antes da checagem oficial.",
   },
+
   {
     id: "check",
     titulo: "Checagem aberta",
     texto:
       "A checagem oficial está aberta. Confira atentamente seu nome, categoria, peso, graduação e demais informações da inscrição.",
   },
+
   {
     id: "alone",
     titulo: "Atletas sozinhos",
     texto:
       "Os atletas que não possuem adversários compatíveis dentro de sua categoria serão identificados nesta etapa.",
   },
+
   {
     id: "closed",
     titulo: "Checagem encerrada",
     texto:
       "A checagem foi encerrada. Após este momento, alterações nas categorias e informações dos atletas estarão sujeitas às regras da organização.",
   },
+
   {
     id: "finished",
     titulo: "Finalizado",
@@ -113,59 +298,11 @@ const fasesPadrao = [
   },
 ];
 
-const tabelaPesoPadrao = [
-  {
-    id: 1,
-    tipoPeso: "atleta",
-    pesagem: "peso",
-    sexo: "feminino",
-    categoria: "MASTER 2 NOGI",
-    graduacao: "MARROM",
-
-    resultado: [
-      {
-        id: 1,
-        nome: "GALO",
-        limite: "até 46,500 kg",
-      },
-      {
-        id: 2,
-        nome: "PLUMA",
-        limite: "até 51,500 kg",
-      },
-      {
-        id: 3,
-        nome: "PENA",
-        limite: "até 56,500 kg",
-      },
-      {
-        id: 4,
-        nome: "LEVE",
-        limite: "até 61,500 kg",
-      },
-      {
-        id: 5,
-        nome: "MEDIO",
-        limite: "até 66,500 kg",
-      },
-      {
-        id: 6,
-        nome: "MEIO-PESADO",
-        limite: "até 71,500 kg",
-      },
-      {
-        id: 7,
-        nome: "PESADO",
-        limite: "até 76,500 kg",
-      },
-      {
-        id: 8,
-        nome: "SUPER-PESADO",
-        limite: "acima de 76,501 kg",
-      },
-    ],
-  },
-];
+/*
+|--------------------------------------------------------------------------
+| CRIAR DADOS PADRÃO
+|--------------------------------------------------------------------------
+*/
 
 const criarDadosPadrao = () => {
   return {
@@ -191,10 +328,19 @@ const criarDadosPadrao = () => {
   };
 };
 
+/*
+|--------------------------------------------------------------------------
+| EXPORTS
+|--------------------------------------------------------------------------
+*/
+
 export {
   infoGeraisPadrao,
   categoriasPadrao,
   graduacoesPadrao,
+  modalidadesPadrao,
+  sexosPadrao,
+  resultadosPesoPadrao,
   fasesPadrao,
   tabelaPesoPadrao,
   criarDadosPadrao,

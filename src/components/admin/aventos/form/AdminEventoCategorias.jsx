@@ -4,21 +4,21 @@ import AdminEventoFormSection from './AdminEventoFormSection';
 
 
 const categoriasPadrao = [
-    'PRE-MIRIM NOGI',
-    'MIRIM NOGI',
-    'INFANTIL A NOGI',
-    'INFANTIL B NOGI',
-    'INFANTO-JUVENIL A NOGI',
-    'INFANTO-JUVENIL B NOGI',
-    'JUVENIL NOGI',
-    'ADULTO NOGI',
-    'MASTER 1 NOGI',
-    'MASTER 2 NOGI',
-    'MASTER 3 NOGI',
-    'MASTER 4 NOGI',
-    'MASTER 5 NOGI',
-    'MASTER 6 NOGI',
-    'MASTER 7 NOGI'
+    'PRE-MIRIM',
+    'MIRIM',
+    'INFANTIL A',
+    'INFANTIL B',
+    'INFANTO-JUVENIL A',
+    'INFANTO-JUVENIL B',
+    'JUVENIL',
+    'ADULTO',
+    'MASTER 1',
+    'MASTER 2',
+    'MASTER 3',
+    'MASTER 4',
+    'MASTER 5',
+    'MASTER 6',
+    'MASTER 7'
 ];
 
 

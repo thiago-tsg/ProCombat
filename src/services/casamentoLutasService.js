@@ -17,21 +17,6 @@ const normalizarPeso = (peso) => {
   return Number.isFinite(numero) ? numero : null;
 };
 
-const obterNomeCategoriaTabela = (categoria, modalidade) => {
-  const categoriaNormalizada = normalizarTexto(categoria);
-  const modalidadeNormalizada = normalizarTexto(modalidade);
-
-  if (modalidadeNormalizada === "NOGI") {
-    if (categoriaNormalizada.endsWith(" NOGI")) {
-      return categoriaNormalizada;
-    }
-
-    return `${categoriaNormalizada} NOGI`;
-  }
-
-  return categoriaNormalizada.replace(/\s+NOGI$/, "");
-};
-
 const encontrarTabelaPeso = (
   tabelaPeso,
   categoria,
@@ -43,23 +28,23 @@ const encontrarTabelaPeso = (
     return null;
   }
 
-  const categoriaTabela = obterNomeCategoriaTabela(categoria, modalidade);
-
+  const categoriaNormalizada = normalizarTexto(categoria);
   const graduacaoNormalizada = normalizarTexto(graduacao);
   const sexoNormalizado = normalizarTexto(sexo);
+  const modalidadeNormalizada = normalizarTexto(modalidade);
 
   return (
     tabelaPeso.find((tabela) => {
-      const categoriaTabelaNormalizada = normalizarTexto(tabela.categoria);
-
+      const categoriaTabela = normalizarTexto(tabela.categoria);
       const graduacaoTabela = normalizarTexto(tabela.graduacao);
-
       const sexoTabela = normalizarTexto(tabela.sexo);
+      const modalidadeTabela = normalizarTexto(tabela.modalidade);
 
       return (
-        categoriaTabelaNormalizada === categoriaTabela &&
+        categoriaTabela === categoriaNormalizada &&
         graduacaoTabela === graduacaoNormalizada &&
         sexoTabela === sexoNormalizado &&
+        modalidadeTabela === modalidadeNormalizada &&
         Array.isArray(tabela.resultado) &&
         tabela.resultado.length > 0
       );
@@ -82,7 +67,10 @@ const encontrarFaixaPeso = (resultado, peso) => {
     const limite = normalizarTexto(faixa.limite);
 
     if (limite.startsWith("ATE")) {
-      const valorTexto = limite.replace("ATE", "").replace("KG", "").trim();
+      const valorTexto = limite
+        .replace("ATE", "")
+        .replace("KG", "")
+        .trim();
 
       const limitePeso = normalizarPeso(valorTexto);
 
@@ -131,7 +119,11 @@ const obterModalidadeLabel = (modalidade) => {
   return "Gi";
 };
 
-export const encontrarFaixaPesoAtleta = ({ inscricao, evento, modalidade }) => {
+export const encontrarFaixaPesoAtleta = ({
+  inscricao,
+  evento,
+  modalidade,
+}) => {
   if (!inscricao || !evento) {
     return null;
   }
@@ -284,7 +276,9 @@ export const gerarSugestoesDeLutas = (grupos) => {
         },
 
         diferencaPeso: Number(
-          Math.abs(atletaA.pesoNumerico - atletaB.pesoNumerico).toFixed(3),
+          Math.abs(
+            atletaA.pesoNumerico - atletaB.pesoNumerico
+          ).toFixed(3)
         ),
 
         numeroLuta,
@@ -333,4 +327,4 @@ export const encontrarAtletasSemAdversario = (grupos) => {
   });
 
   return semAdversario;
-};
+}

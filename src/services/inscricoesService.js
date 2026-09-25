@@ -132,6 +132,24 @@ export const buscarInscricoesElegiveisParaCasamento = async (eventoId) => {
         inscricao.eventoId === eventoId &&
         (inscricao.statusPagamento === "pago" ||
           inscricao.statusPagamento === "pagamento_manual") &&
-        inscricao.statusCasamento === "aguardando",
+        (!inscricao.statusCasamento ||
+          inscricao.statusCasamento === "aguardando"),
     );
+};
+
+export const buscarInscricoesPorEvento = async (eventoId) => {
+  const snapshot = await get(inscricoesRef);
+
+  if (!snapshot.exists()) {
+    return [];
+  }
+
+  const inscricoes = snapshot.val();
+
+  return Object.entries(inscricoes)
+    .map(([id, inscricao]) => ({
+      id,
+      ...inscricao,
+    }))
+    .filter((inscricao) => inscricao.eventoId === eventoId);
 };
