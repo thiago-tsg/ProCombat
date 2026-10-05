@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+
 const AdminEventoFormSection = ({
     numero,
     titulo,
@@ -5,14 +8,31 @@ const AdminEventoFormSection = ({
     children
 }) => {
 
-    return (
-        <section className="admin-evento-form-section">
+    const [aberta, setAberta] = useState(false);
 
-            <div className="admin-evento-form-section-header">
+
+    const alternarSecao = () => {
+        setAberta((estadoAtual) => !estadoAtual);
+    };
+
+
+    return (
+        <section
+            className={`admin-evento-form-section ${aberta ? 'aberta' : 'fechada'
+                }`}
+        >
+
+            <button
+                type="button"
+                className="admin-evento-form-section-header"
+                onClick={alternarSecao}
+                aria-expanded={aberta}
+            >
 
                 <span>
                     {numero}
                 </span>
+
 
                 <div>
 
@@ -26,13 +46,26 @@ const AdminEventoFormSection = ({
 
                 </div>
 
-            </div>
+
+                <strong
+                    className="admin-evento-form-section-icon"
+                    aria-hidden="true"
+                >
+                    {aberta ? '−' : '+'}
+                </strong>
+
+            </button>
 
 
-            {children}
+            {aberta && (
+                <div className="admin-evento-form-section-content">
+                    {children}
+                </div>
+            )}
 
         </section>
     );
 };
+
 
 export default AdminEventoFormSection;

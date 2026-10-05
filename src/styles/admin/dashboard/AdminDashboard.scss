@@ -1,0 +1,671 @@
+.admin-dashboard {
+  width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(circle at 85% 0%, rgba(229, 9, 20, 0.075), transparent 28%),
+    radial-gradient(
+      circle at 0% 80%,
+      rgba(255, 255, 255, 0.025),
+      transparent 25%
+    );
+
+  color: #f2f2f2;
+}
+
+.admin-dashboard-container {
+  width: min(1400px, 100%);
+
+  margin: 0 auto;
+
+  padding: 3rem 3rem 5rem;
+
+  box-sizing: border-box;
+}
+
+// ==================================================
+// CABEÇALHO
+// ==================================================
+
+.admin-dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 2rem;
+}
+
+.admin-dashboard-header > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-dashboard-header span {
+  margin-bottom: 0.5rem;
+
+  color: #e50914;
+
+  font-size: 0.62rem;
+  font-weight: 900;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.admin-dashboard-header h1 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.055em;
+}
+
+.admin-dashboard-header p {
+  max-width: 520px;
+
+  margin: 0.75rem 0 0;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.78rem;
+
+  line-height: 1.6;
+}
+
+// ==================================================
+// ESTATÍSTICAS
+// ==================================================
+
+.admin-dashboard-stats {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 0.8rem;
+
+  margin-bottom: 2.5rem;
+}
+
+.admin-dashboard-stat {
+  position: relative;
+
+  min-height: 145px;
+
+  padding: 1.25rem;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.015)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 10px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-dashboard-stat::after {
+  content: "";
+
+  position: absolute;
+
+  right: -35px;
+  bottom: -45px;
+
+  width: 110px;
+  height: 110px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle, rgba(229, 9, 20, 0.11), transparent 68%);
+
+  pointer-events: none;
+}
+
+.admin-dashboard-stat:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 255, 255, 0.12);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+}
+
+.admin-dashboard-stat span {
+  display: block;
+
+  margin-bottom: 0.8rem;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 0.62rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.admin-dashboard-stat strong {
+  display: block;
+
+  color: #fff;
+
+  font-size: 2.5rem;
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: -0.05em;
+}
+
+.admin-dashboard-stat small {
+  display: block;
+
+  margin-top: 0.65rem;
+
+  color: rgba(255, 255, 255, 0.23);
+
+  font-size: 0.62rem;
+}
+
+// ==================================================
+// SEÇÕES
+// ==================================================
+
+.admin-dashboard-section {
+  margin-top: 1.5rem;
+
+  padding: 1.35rem;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.012)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.065);
+
+  border-radius: 10px;
+}
+
+.admin-dashboard-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1.15rem;
+}
+
+.admin-dashboard-section-header > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-dashboard-section-header span {
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.56rem;
+  font-weight: 900;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.admin-dashboard-section-header h2 {
+  margin: 0.3rem 0 0;
+
+  color: #fff;
+
+  font-size: 1.05rem;
+  font-weight: 850;
+
+  letter-spacing: -0.025em;
+}
+
+.admin-dashboard-section-header > button {
+  padding: 0.55rem 0.8rem;
+
+  background: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 6px;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-family: inherit;
+
+  font-size: 0.62rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-dashboard-section-header > button:hover {
+  background: rgba(229, 9, 20, 0.08);
+
+  border-color: rgba(229, 9, 20, 0.25);
+
+  color: #fff;
+}
+
+// ==================================================
+// AÇÕES RÁPIDAS
+// ==================================================
+
+.admin-dashboard-acoes {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 0.65rem;
+}
+
+.admin-dashboard-acoes button {
+  display: flex;
+  align-items: center;
+
+  min-height: 75px;
+
+  padding: 0.85rem;
+
+  gap: 0.75rem;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 8px;
+
+  color: #fff;
+
+  font-family: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-dashboard-acoes button:hover {
+  transform: translateY(-2px);
+
+  background: rgba(229, 9, 20, 0.06);
+
+  border-color: rgba(229, 9, 20, 0.2);
+}
+
+.admin-dashboard-acoes button > strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 7px;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 0.75rem;
+  font-weight: 900;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.admin-dashboard-acoes button:hover > strong {
+  background: #e50914;
+
+  border-color: #e50914;
+
+  color: #fff;
+}
+
+.admin-dashboard-acoes button > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.2rem;
+
+  min-width: 0;
+}
+
+.admin-dashboard-acoes button > div span {
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+
+.admin-dashboard-acoes button > div small {
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.56rem;
+
+  line-height: 1.3;
+}
+
+// ==================================================
+// EVENTOS
+// ==================================================
+
+.admin-dashboard-eventos {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.admin-dashboard-evento {
+  display: flex;
+  align-items: center;
+
+  min-height: 72px;
+
+  padding: 0.65rem;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 8px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-dashboard-evento:hover {
+  background: rgba(255, 255, 255, 0.035);
+
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-dashboard-evento-imagem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background: #151515;
+
+  border-radius: 6px;
+}
+
+.admin-dashboard-evento-imagem img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.admin-dashboard-evento-imagem span {
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.admin-dashboard-evento-conteudo {
+  flex: 1;
+
+  min-width: 0;
+
+  margin-left: 0.85rem;
+}
+
+.admin-dashboard-evento-conteudo > span {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  overflow: hidden;
+
+  color: #e50914;
+
+  font-size: 0.52rem;
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-dashboard-evento-conteudo h3 {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-dashboard-evento-conteudo p {
+  margin: 0.25rem 0 0;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.58rem;
+}
+
+.admin-dashboard-evento-status {
+  flex-shrink: 0;
+
+  margin-left: 1rem;
+
+  padding: 0.4rem 0.55rem;
+
+  border-radius: 5px;
+
+  font-size: 0.52rem;
+  font-weight: 800;
+}
+
+.admin-dashboard-evento-status.status-publicado {
+  background: rgba(46, 180, 100, 0.08);
+
+  border: 1px solid rgba(46, 180, 100, 0.18);
+
+  color: #75d99b;
+}
+
+.admin-dashboard-evento-status.status-rascunho {
+  background: rgba(255, 255, 255, 0.045);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.42);
+}
+
+// ==================================================
+// VAZIO
+// ==================================================
+
+.admin-dashboard-vazio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 180px;
+
+  padding: 2rem;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.012);
+
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  text-align: center;
+}
+
+.admin-dashboard-vazio strong {
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 0.75rem;
+}
+
+.admin-dashboard-vazio span {
+  margin-top: 0.4rem;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.62rem;
+}
+
+// ==================================================
+// RESPONSIVO
+// ==================================================
+
+@media (max-width: 1100px) {
+  .admin-dashboard-container {
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  .admin-dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-dashboard-acoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-dashboard-container {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .admin-dashboard-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .admin-dashboard-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .admin-dashboard-header p {
+    font-size: 0.68rem;
+  }
+
+  .admin-dashboard-stats {
+    gap: 0.5rem;
+
+    margin-bottom: 1.5rem;
+  }
+
+  .admin-dashboard-stat {
+    min-height: 115px;
+
+    padding: 0.9rem;
+  }
+
+  .admin-dashboard-stat strong {
+    font-size: 2rem;
+  }
+
+  .admin-dashboard-stat span {
+    font-size: 0.54rem;
+  }
+
+  .admin-dashboard-stat small {
+    font-size: 0.54rem;
+  }
+
+  .admin-dashboard-section {
+    padding: 0.9rem;
+
+    margin-top: 1rem;
+  }
+
+  .admin-dashboard-section-header h2 {
+    font-size: 0.9rem;
+  }
+
+  .admin-dashboard-acoes {
+    grid-template-columns: 1fr;
+
+    gap: 0.45rem;
+  }
+
+  .admin-dashboard-acoes button {
+    min-height: 64px;
+  }
+
+  .admin-dashboard-evento {
+    min-height: 64px;
+
+    padding: 0.5rem;
+  }
+
+  .admin-dashboard-evento-imagem {
+    width: 48px;
+    height: 44px;
+  }
+
+  .admin-dashboard-evento-conteudo {
+    margin-left: 0.65rem;
+  }
+
+  .admin-dashboard-evento-status {
+    display: none;
+  }
+}

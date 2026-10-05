@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import AdminEventoForm from './AdminEventoForm';
 import AdminEventoInscricoes from './form/AdminEventoInscricoes';
+import AdminEventoCasamento from './form/AdminEventoCasamento';
 
 import {
-    buscarEventos,
     criarEvento,
     atualizarEvento as atualizarEventoFirebase,
     publicarEvento as publicarEventoFirebase,
@@ -12,63 +12,18 @@ import {
 } from '../../../services/eventosService';
 
 import '../../../styles/admin/eventos/AdminEventos.scss';
-import AdminEventoCasamento from './form/AdminEventoCasamento';
 
 
-const AdminEventos = () => {
+const AdminEventos = ({
+    eventos,
+    setEventos
+}) => {
 
     const [criandoEvento, setCriandoEvento] = useState(false);
 
-    const [eventos, setEventos] = useState([]);
-
     const [eventoEditando, setEventoEditando] = useState(null);
 
-    const [carregando, setCarregando] = useState(true);
-
     const [erro, setErro] = useState('');
-
-
-    // ==================================================
-    // CARREGAR EVENTOS DO FIREBASE
-    // ==================================================
-
-    useEffect(() => {
-
-        const carregarEventos = async () => {
-
-            try {
-
-                setCarregando(true);
-                setErro('');
-
-                const eventosFirebase =
-                    await buscarEventos();
-
-                setEventos(eventosFirebase);
-
-            } catch (error) {
-
-                console.error(
-                    'Erro ao carregar eventos do Firebase:',
-                    error
-                );
-
-                setErro(
-                    'Não foi possível carregar os eventos.'
-                );
-
-            } finally {
-
-                setCarregando(false);
-
-            }
-
-        };
-
-
-        carregarEventos();
-
-    }, []);
 
 
     // ==================================================
@@ -86,15 +41,18 @@ const AdminEventos = () => {
                 status: 'rascunho'
             };
 
+
             const eventoCriado =
                 await criarEvento(
                     eventoComStatus
                 );
 
+
             setEventos((eventosAtuais) => [
                 ...eventosAtuais,
                 eventoCriado
             ]);
+
 
             setCriandoEvento(false);
 
@@ -139,11 +97,13 @@ const AdminEventos = () => {
 
             setErro('');
 
+
             const eventoSalvo =
                 await atualizarEventoFirebase(
                     eventoAtualizado.id,
                     eventoAtualizado
                 );
+
 
             setEventos((eventosAtuais) =>
                 eventosAtuais.map((evento) =>
@@ -152,6 +112,7 @@ const AdminEventos = () => {
                         : evento
                 )
             );
+
 
             setEventoEditando(null);
 
@@ -181,6 +142,7 @@ const AdminEventos = () => {
             'Tem certeza que deseja publicar este evento? Ele ficará visível no site público.'
         );
 
+
         if (!confirmar) {
             return;
         }
@@ -190,7 +152,9 @@ const AdminEventos = () => {
 
             setErro('');
 
+
             await publicarEventoFirebase(id);
+
 
             setEventos((eventosAtuais) =>
                 eventosAtuais.map((evento) =>
@@ -229,6 +193,7 @@ const AdminEventos = () => {
             'Tem certeza que deseja excluir este evento?'
         );
 
+
         if (!confirmar) {
             return;
         }
@@ -238,13 +203,16 @@ const AdminEventos = () => {
 
             setErro('');
 
+
             await excluirEventoFirebase(id);
+
 
             setEventos((eventosAtuais) =>
                 eventosAtuais.filter(
                     (evento) => evento.id !== id
                 )
             );
+
 
             if (eventoEditando?.id === id) {
                 setEventoEditando(null);
@@ -298,36 +266,10 @@ const AdminEventos = () => {
             encerrado: 'Encerrado'
         };
 
+
         return nomes[status] || 'Rascunho';
 
     };
-
-
-    // ==================================================
-    // CARREGANDO
-    // ==================================================
-
-    if (carregando) {
-
-        return (
-            <section className="admin-eventos">
-
-                <div className="admin-eventos-container">
-
-                    <div className="admin-eventos-vazio">
-
-                        <span>
-                            Carregando eventos...
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </section>
-        );
-
-    }
 
 
     // ==================================================
@@ -358,18 +300,19 @@ const AdminEventos = () => {
                     </div>
 
 
-                    {!criandoEvento && !eventoEditando && (
+                    {!criandoEvento &&
+                        !eventoEditando && (
 
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setCriandoEvento(true)
-                            }
-                        >
-                            + Criar evento
-                        </button>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setCriandoEvento(true)
+                                }
+                            >
+                                + Criar evento
+                            </button>
 
-                    )}
+                        )}
 
                 </header>
 
@@ -441,6 +384,7 @@ const AdminEventos = () => {
                                         obterStatus(
                                             evento
                                         );
+
 
                                     return (
                                         <article
@@ -572,6 +516,7 @@ const AdminEventos = () => {
                                                 <AdminEventoInscricoes
                                                     evento={evento}
                                                 />
+
 
                                                 {/* ============================== */}
                                                 {/* CASAMENTO */}

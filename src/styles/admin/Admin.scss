@@ -1,15 +1,15 @@
 .admin {
   position: relative;
 
+  display: flex;
+
   width: 100%;
   min-height: 100vh;
 
-  padding-top: 80px;
-
   background:
-    radial-gradient(circle at 80% 10%, rgba(229, 9, 20, 0.08), transparent 35%),
+    radial-gradient(circle at 75% 0%, rgba(229, 9, 20, 0.08), transparent 28%),
     radial-gradient(
-      circle at 10% 90%,
+      circle at 20% 100%,
       rgba(255, 255, 255, 0.025),
       transparent 30%
     ),
@@ -17,25 +17,571 @@
 
   color: #f2f2f2;
 
+  overflow-x: hidden;
+}
+
+// ==================================================
+// SIDEBAR
+// ==================================================
+
+.admin-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 250px;
+
+  padding: 1.5rem 1rem;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(180deg, #101010 0%, #0b0b0b 55%, #080808 100%);
+
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+
+  box-shadow: 12px 0 40px rgba(0, 0, 0, 0.18);
+}
+
+// ==================================================
+// MARCA
+// ==================================================
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  padding: 0.35rem 0.5rem;
+}
+
+.admin-brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(135deg, #e50914, #a5070e);
+
+  border-radius: 9px;
+
+  color: #fff;
+
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+
+  box-shadow: 0 8px 25px rgba(229, 9, 20, 0.18);
+}
+
+.admin-brand > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.admin-brand strong {
+  color: #fff;
+
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.admin-brand span {
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+// ==================================================
+// DIVISOR
+// ==================================================
+
+.admin-sidebar-divider {
+  width: calc(100% - 1rem);
+
+  height: 1px;
+
+  margin: 1.5rem 0 1rem;
+
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.09), transparent);
+}
+
+// ==================================================
+// NAVEGAÇÃO
+// ==================================================
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.3rem;
+}
+
+.admin-nav button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 47px;
+
+  padding: 0 0.75rem;
+
+  gap: 0.7rem;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-nav button:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.035);
+
+  border-color: rgba(255, 255, 255, 0.055);
+
+  color: rgba(255, 255, 255, 0.85);
+
+  transform: translateX(2px);
+}
+
+.admin-nav button.ativo {
+  background: linear-gradient(
+    90deg,
+    rgba(229, 9, 20, 0.14),
+    rgba(229, 9, 20, 0.035)
+  );
+
+  border-color: rgba(229, 9, 20, 0.18);
+
+  color: #fff;
+}
+
+.admin-nav button.ativo::before {
+  content: "";
+
+  position: absolute;
+
+  left: -1px;
+  top: 10px;
+  bottom: 10px;
+
+  width: 3px;
+
+  border-radius: 0 3px 3px 0;
+
+  background: #e50914;
+
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.45);
+}
+
+.admin-nav button:disabled {
+  opacity: 0.32;
+
+  cursor: not-allowed;
+}
+
+.admin-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  border-radius: 6px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.8rem;
+}
+
+.admin-nav button.ativo .admin-nav-icon {
+  background: rgba(229, 9, 20, 0.14);
+
+  color: #e50914;
+}
+
+.admin-nav button > span:nth-child(2) {
+  flex: 1;
+}
+
+.admin-nav button small {
+  color: rgba(255, 255, 255, 0.18);
+
+  font-size: 0.52rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+// ==================================================
+// PARTE INFERIOR
+// ==================================================
+
+.admin-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+// ==================================================
+// USUÁRIO
+// ==================================================
+
+.admin-usuario {
+  display: flex;
+  align-items: center;
+
+  gap: 0.65rem;
+
+  padding: 0.75rem;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 9px;
+
   overflow: hidden;
 }
 
-// --------------------------------------------------
-// CONTEÚDO DO ADMIN
-// --------------------------------------------------
+.admin-usuario-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.admin > * {
-  position: relative;
+  width: 31px;
+  height: 31px;
 
-  z-index: 1;
+  flex-shrink: 0;
+
+  background: #1d1d1d;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 50%;
+
+  color: #fff;
+
+  font-size: 0.65rem;
+  font-weight: 900;
 }
 
-// --------------------------------------------------
+.admin-usuario > div:last-child {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 0.15rem;
+}
+
+.admin-usuario strong {
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 0.65rem;
+}
+
+.admin-usuario span {
+  display: block;
+
+  max-width: 165px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.55rem;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ==================================================
+// VOLTAR PARA SITE
+// ==================================================
+
+.admin-voltar-site {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  gap: 0.6rem;
+
+  padding: 0.7rem 0.75rem;
+
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-family: inherit;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-voltar-site:hover {
+  background: rgba(255, 255, 255, 0.035);
+
+  border-color: rgba(255, 255, 255, 0.05);
+
+  color: #fff;
+}
+
+.admin-voltar-site span {
+  font-size: 0.9rem;
+}
+
+// ==================================================
+// CONTEÚDO
+// ==================================================
+
+.admin-content {
+  width: calc(100% - 250px);
+
+  min-height: 100vh;
+
+  margin-left: 250px;
+
+  box-sizing: border-box;
+}
+
+// ==================================================
+// ERRO
+// ==================================================
+
+.admin-erro {
+  position: fixed;
+
+  top: 1rem;
+  right: 1rem;
+
+  z-index: 200;
+
+  max-width: 360px;
+
+  padding: 0.8rem 1rem;
+
+  background: #171717;
+
+  border: 1px solid rgba(229, 9, 20, 0.3);
+
+  border-left: 3px solid #e50914;
+
+  border-radius: 7px;
+
+  color: #fff;
+
+  font-size: 0.7rem;
+  line-height: 1.4;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+// ==================================================
+// CARREGANDO
+// ==================================================
+
+.admin-carregando {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  gap: 1rem;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 0.75rem;
+}
+
+.admin-carregando-spinner {
+  width: 28px;
+  height: 28px;
+
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-top-color: #e50914;
+
+  border-radius: 50%;
+
+  animation: admin-spinner 0.8s linear infinite;
+}
+
+@keyframes admin-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ==================================================
 // RESPONSIVO
-// --------------------------------------------------
+// ==================================================
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    width: 215px;
+  }
+
+  .admin-content {
+    width: calc(100% - 215px);
+
+    margin-left: 215px;
+  }
+}
 
 @media (max-width: 700px) {
-  .admin {
-    padding-top: 80px;
+  .admin-sidebar {
+    position: fixed;
+
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 68px;
+
+    padding: 0 0.5rem;
+
+    flex-direction: row;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 0;
+
+    background: rgba(10, 10, 10, 0.96);
+
+    backdrop-filter: blur(15px);
+  }
+
+  .admin-sidebar-top {
+    width: 100%;
+  }
+
+  .admin-brand,
+  .admin-sidebar-divider,
+  .admin-sidebar-bottom {
+    display: none;
+  }
+
+  .admin-nav {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    width: 100%;
+
+    height: 68px;
+
+    gap: 0;
+  }
+
+  .admin-nav button {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-height: 68px;
+
+    padding: 0;
+
+    gap: 0.2rem;
+
+    border-radius: 7px;
+
+    font-size: 0.5rem;
+
+    text-align: center;
+  }
+
+  .admin-nav button.ativo::before {
+    top: auto;
+    right: 20%;
+    bottom: 4px;
+    left: 20%;
+
+    width: auto;
+    height: 2px;
+
+    border-radius: 2px;
+  }
+
+  .admin-nav-icon {
+    width: 25px;
+    height: 25px;
+
+    font-size: 0.72rem;
+  }
+
+  .admin-nav button small {
+    display: none;
+  }
+
+  .admin-content {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding-bottom: 68px;
+  }
+
+  .admin-erro {
+    top: 0.75rem;
+    right: 0.75rem;
+    left: 0.75rem;
+
+    max-width: none;
   }
 }

@@ -54,7 +54,7 @@ const Header = () => {
             <div className="header-bottom">
 
                 <span>
-                    JIU-JITSU COMPETITIONS
+                    BRASIL JIU-JITSU
                 </span>
 
                 <div className="header-scroll">
